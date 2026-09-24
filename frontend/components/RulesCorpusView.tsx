@@ -1,80 +1,126 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { BookOpen, Shield, CheckCircle2, AlertCircle } from "lucide-react";
-import { listRules, Rule } from "../lib/api";
+import { listRules, Rule } from "@/lib/api";
 
 export const RulesCorpusView: React.FC = () => {
   const [rules, setRules] = useState<Rule[]>([]);
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [scopeFilter, setScopeFilter] = useState<string>("all");
 
   useEffect(() => {
     listRules()
-      .then((data) => setRules(data))
+      .then(setRules)
       .catch(console.error)
       .finally(() => setLoading(false));
   }, []);
 
+  const filtered = rules.filter((r) => {
+    const matchesSearch =
+      r.rule_id.toLowerCase().includes(search.toLowerCase()) ||
+      r.description.toLowerCase().includes(search.toLowerCase()) ||
+      r.source_citation.toLowerCase().includes(search.toLowerCase());
+    const matchesScope = scopeFilter === "all" || r.project_scope === scopeFilter;
+    return matchesSearch && matchesScope;
+  });
+
   return (
-    <div className="space-y-6">
-      <div>
-        <h2 className="text-xl font-bold text-white flex items-center gap-2">
-          <BookOpen className="w-5 h-5 text-cyan-400" />
-          Statutory Rules Corpus & Transparency Registry
-        </h2>
-        <p className="text-xs text-slate-400 mt-1">
-          Every compliance verdict traces deterministically to versioned clauses from the Legal Metrology (Packaged Commodities) Rules, 2011.
-        </p>
+    <div className="space-y-6 animate-fadeIn">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+        <div>
+          <h1 className="text-2xl font-heading font-semibold text-ink tracking-tight">
+            Active statutory ruleset
+          </h1>
+          <p className="text-sm text-ink-light mt-0.5">
+            Deterministic LMPC 2011 rules loaded in the compliance engine. Verdicts are never LLM-generated.
+          </p>
+        </div>
+        <span className="font-mono text-xs text-ink-light">
+          {filtered.length} of {rules.length} rules
+        </span>
+      </div>
+
+      {/* Filter Bar */}
+      <div className="flex flex-col sm:flex-row gap-3">
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search by rule ID, description, or citation…"
+          className="flex-1 bg-paper border border-hairline rounded-md px-3 py-2.5 text-sm text-ink focus:outline-none focus:border-seal font-body"
+        />
+        <select
+          value={scopeFilter}
+          onChange={(e) => setScopeFilter(e.target.value)}
+          className="bg-paper border border-hairline rounded-md px-3 py-2.5 text-sm text-ink focus:outline-none focus:border-seal font-body cursor-pointer"
+        >
+          <option value="all">All scopes</option>
+          <option value="mvp">MVP</option>
+          <option value="final_year_target">Final year</option>
+          <option value="advanced">Advanced</option>
+        </select>
       </div>
 
       {loading ? (
-        <div className="text-center py-16 text-slate-400 text-sm">Loading statutory rules...</div>
+        <div className="text-center py-16 text-ink-light text-sm">
+          <span className="material-symbols-outlined text-[28px] animate-spin block mb-2">progress_activity</span>
+          Loading rules…
+        </div>
       ) : (
-        <div className="space-y-4">
-          <div className="grid grid-cols-1 gap-3">
-            {rules.map((rule) => {
-              const isNeedsLegalReview = rule.verification_status === "needs_legal_review";
-
-              return (
-                <div
-                  key={rule.rule_id}
-                  className="bg-slate-900/60 border border-slate-800 rounded-xl p-5 hover:border-slate-700 transition-colors"
-                >
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 pb-2 border-b border-slate-800/80">
-                    <div className="flex items-center space-x-3">
-                      <span className="font-mono text-sm font-bold text-cyan-400">{rule.rule_id}</span>
-                      <span className="text-xs font-mono text-slate-500">v{rule.version}</span>
-                      <span className="text-[11px] uppercase tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-semibold">
-                        Field: {rule.required_field}
-                      </span>
-                    </div>
-
-                    <div className="flex items-center space-x-2">
-                      <span className="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-800 text-slate-400 uppercase">
-                        Scope: {rule.project_scope}
-                      </span>
-                      {isNeedsLegalReview ? (
-                        <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                          <AlertCircle className="w-3 h-3" /> Needs Legal Review
-                        </span>
-                      ) : (
-                        <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                          <CheckCircle2 className="w-3 h-3" /> Confirmed
-                        </span>
-                      )}
-                    </div>
-                  </div>
-
-                  <p className="text-xs text-slate-300 mb-2 leading-relaxed">{rule.description}</p>
-                  
-                  <div className="bg-slate-950 p-2.5 rounded-lg border border-slate-800/80 flex items-center justify-between text-xs font-mono text-slate-400">
-                    <span>Citation: {rule.source_citation}</span>
-                    <span className="text-slate-500">Severity: {rule.severity}</span>
-                  </div>
+        <div className="border border-hairline rounded-lg overflow-hidden divide-y divide-hairline">
+          {filtered.map((rule) => (
+            <div
+              key={rule.rule_id}
+              className={`py-3.5 px-4 sm:px-5 hover:bg-wash/50 transition-colors border-l-3 ${
+                rule.severity === "FAIL"
+                  ? "border-l-brick"
+                  : rule.severity === "WARN"
+                  ? "border-l-ochre"
+                  : "border-l-seal"
+              }`}
+            >
+              <div className="flex items-start justify-between gap-4 mb-1.5">
+                <div className="flex items-center gap-3 flex-wrap">
+                  <span className="font-mono text-sm font-semibold text-ink">{rule.rule_id}</span>
+                  <span className={`text-[11px] font-mono font-medium px-1.5 py-0.5 rounded ${
+                    rule.severity === "FAIL"
+                      ? "bg-brick-light text-brick"
+                      : rule.severity === "WARN"
+                      ? "bg-ochre-light text-ochre"
+                      : "text-seal bg-wash"
+                  }`}>
+                    {rule.severity}
+                  </span>
+                  <span className="text-[11px] font-mono text-ink-light">
+                    v{rule.version}
+                  </span>
+                  <span className="text-[11px] text-ink-light capitalize">
+                    {rule.project_scope}
+                  </span>
                 </div>
-              );
-            })}
-          </div>
+                <span className={`text-[11px] font-mono flex-shrink-0 ${
+                  rule.verification_status === "confirmed"
+                    ? "text-stamp-green"
+                    : "text-ochre"
+                }`}>
+                  {rule.verification_status.replace(/_/g, " ")}
+                </span>
+              </div>
+
+              <p className="text-sm text-ink leading-relaxed mb-2">{rule.description}</p>
+
+              <div className="flex flex-wrap gap-3 text-[11px] text-ink-light font-mono">
+                <span>{rule.source_citation}</span>
+                {rule.required_field && (
+                  <span>
+                    · Field: {rule.required_field.replace(/_/g, " ")}
+                  </span>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
       )}
     </div>

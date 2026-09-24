@@ -1,24 +1,7 @@
 "use client";
 
-import React, { useState, useRef } from "react";
-import {
-  CheckCircle2,
-  AlertTriangle,
-  Sparkles,
-  Edit3,
-  Check,
-  ZoomIn,
-  ZoomOut,
-  Maximize2,
-  RotateCcw,
-  ShieldCheck,
-  Eye,
-  ArrowRight,
-  HelpCircle,
-  FileCheck,
-  Layers,
-} from "lucide-react";
-import { ExtractedField, API_BASE_URL } from "../lib/api";
+import React, { useState } from "react";
+import { ExtractedField, API_BASE_URL } from "@/lib/api";
 
 interface ExtractionReviewStudioProps {
   fields: ExtractedField[];
@@ -35,40 +18,36 @@ interface ExtractionReviewStudioProps {
   loadingStatus: string;
 }
 
-const FIELD_METADATA: Record<
-  string,
-  { label: string; ruleCitation: string; placeholder: string; unitHint?: string }
-> = {
+const FIELD_METADATA: Record<string, { label: string; ruleCitation: string; placeholder: string }> = {
   manufacturer_name_address: {
-    label: "Manufacturer / Packer Details",
-    ruleCitation: "LMPC Rule 6(1)(a) — Name, complete registered address, state/PIN",
+    label: "Manufacturer / packer details",
+    ruleCitation: "LMPC Rule 6(1)(a)",
     placeholder: "e.g., Mfd by Britannia Industries Ltd, 5/1A Hungerford Street, Kolkata - 700017",
   },
   common_name: {
-    label: "Generic Commodity Name",
-    ruleCitation: "LMPC Rule 6(1)(b) — Identity of product contained in package",
+    label: "Generic commodity name",
+    ruleCitation: "LMPC Rule 6(1)(b)",
     placeholder: "e.g., Biscuits / Cookies / Extruded Snacks",
   },
   net_quantity: {
-    label: "Net Quantity Declaration",
-    ruleCitation: "LMPC Rule 6(1)(c) — Standard unit of weight/measure (g, ml, kg, L)",
+    label: "Net quantity declaration",
+    ruleCitation: "LMPC Rule 6(1)(c)",
     placeholder: "e.g., Net Qty: 250 g",
-    unitHint: "Mandatory standard units: g, kg, ml, l, N",
   },
   mrp: {
-    label: "Retail Sale Price (MRP)",
-    ruleCitation: "LMPC Rule 6(1)(e) — Maximum Retail Price inclusive of all taxes",
+    label: "Retail sale price (MRP)",
+    ruleCitation: "LMPC Rule 6(1)(e)",
     placeholder: "e.g., MRP Rs. 40.00 (incl. of all taxes)",
   },
   mfg_month_year: {
-    label: "Date of Packaging / Import",
-    ruleCitation: "LMPC Rule 6(1)(d) — Month & Year of manufacture or pre-packing",
+    label: "Date of packaging / import",
+    ruleCitation: "LMPC Rule 6(1)(d)",
     placeholder: "e.g., Mfd: 08/2026 / Pkd: Aug 2026",
   },
   consumer_care: {
-    label: "Consumer Care Details",
-    ruleCitation: "LMPC Rule 6(2) — Official name, address, phone/helpline, and email",
-    placeholder: "e.g., For complaints: Manager, Consumer Care, Toll Free: 1800-XXX-XXXX, email: feedback@...",
+    label: "Consumer care details",
+    ruleCitation: "LMPC Rule 6(2)",
+    placeholder: "e.g., Consumer Care: 1800-XXX-XXXX, email: feedback@...",
   },
 };
 
@@ -90,10 +69,10 @@ export const ExtractionReviewStudio: React.FC<ExtractionReviewStudioProps> = ({
   const [editingField, setEditingField] = useState<string | null>(null);
   const [editDraftValues, setEditDraftValues] = useState<Record<string, string>>({});
   const [lightboxUrl, setLightboxUrl] = useState<string | null>(null);
+  const [imageNaturalSize, setImageNaturalSize] = useState<{ width: number; height: number } | null>(null);
+  const imageRef = React.useRef<HTMLImageElement | null>(null);
 
-  const imgRef = useRef<HTMLImageElement | null>(null);
   const confidenceThreshold = 0.75;
-
   const lowConfidenceCount = fields.filter((f) => f.confidence < confidenceThreshold).length;
   const confirmedCount = fields.filter((f) => Boolean(f.confirmed_value)).length;
   const allConfirmed = fields.length > 0 && confirmedCount === fields.length;
@@ -103,6 +82,34 @@ export const ExtractionReviewStudio: React.FC<ExtractionReviewStudioProps> = ({
     if (filterMode === "confirmed") return Boolean(f.confirmed_value);
     return true;
   });
+
+  const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget;
+    if (img.naturalWidth > 0 && img.naturalHeight > 0) {
+      setImageNaturalSize({
+        width: img.naturalWidth,
+        height: img.naturalHeight,
+      });
+    }
+  };
+
+  React.useEffect(() => {
+    setImageNaturalSize(null);
+    if (imageRef.current && imageRef.current.complete && imageRef.current.naturalWidth > 0) {
+      setImageNaturalSize({
+        width: imageRef.current.naturalWidth,
+        height: imageRef.current.naturalHeight,
+      });
+    }
+  }, [previewUrl]);
+
+  const handleSelectField = (fieldName: string) => {
+    setSelectedField(fieldName);
+    const el = document.getElementById(`field-row-${fieldName}`);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  };
 
   const handleStartEdit = (fieldName: string, currentValue: string) => {
     setEditingField(fieldName);
@@ -116,212 +123,229 @@ export const ExtractionReviewStudio: React.FC<ExtractionReviewStudioProps> = ({
   };
 
   return (
-    <div className="space-y-6">
-      {/* Studio Header Bar */}
-      <div className="bg-slate-900/80 border border-slate-800/90 rounded-2xl p-5 shadow-xl backdrop-blur-md">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-          <div>
-            <div className="flex items-center space-x-3">
-              <div className="h-8 w-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
-                <FileCheck className="w-4 h-4" />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-white tracking-tight">
-                  Mandatory Packaging Verification Studio
-                </h1>
-                <p className="text-xs text-slate-400 mt-0.5">
-                  Phase 3 Verification Gate (PRD §3) • Confirm extracted declarations before deterministic rule evaluation
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Quick Metrics & Actions */}
-          <div className="flex items-center flex-wrap gap-2.5">
-            <div className="flex items-center space-x-2 bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800 text-xs font-mono">
-              <span className="text-slate-400">Verified:</span>
-              <span className={allConfirmed ? "text-emerald-400 font-bold" : "text-amber-400 font-bold"}>
-                {confirmedCount} / {fields.length}
-              </span>
-            </div>
-
-            {lowConfidenceCount > 0 && (
-              <div className="flex items-center space-x-1.5 bg-amber-500/10 text-amber-300 border border-amber-500/30 px-3 py-1.5 rounded-xl text-xs font-medium">
-                <AlertTriangle className="w-3.5 h-3.5 text-amber-400" />
-                <span>{lowConfidenceCount} Flagged</span>
-              </div>
-            )}
-
-            <button
-              onClick={onConfirmAllHighConfidence}
-              type="button"
-              className="px-3.5 py-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-xs font-semibold text-slate-200 transition-colors flex items-center gap-1.5"
-            >
-              <Check className="w-3.5 h-3.5 text-emerald-400" />
-              <span>Accept High-Confidence</span>
-            </button>
-          </div>
+    <div className="flex flex-col space-y-2 animate-fadeIn">
+      {/* Sleek Studio Header */}
+      <div className="shrink-0 flex items-center justify-between gap-3 pb-2 border-b border-hairline">
+        <div className="flex items-center gap-3">
+          <h1 className="text-lg font-heading font-semibold text-ink tracking-tight">
+            Extraction review
+          </h1>
+          <span className="text-hairline text-xs hidden sm:inline">&bull;</span>
+          <span className="font-mono text-xs text-ink-light">
+            {confirmedCount} of {fields.length} confirmed
+          </span>
+          {lowConfidenceCount > 0 && (
+            <span className="px-2 py-0.5 rounded text-[11px] font-mono bg-ochre-light/40 text-ochre border border-ochre/30 font-semibold">
+              {lowConfidenceCount} flagged
+            </span>
+          )}
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={onConfirmAllHighConfidence}
+            type="button"
+            className="px-2.5 py-1.5 rounded-md border border-hairline bg-paper hover:bg-wash text-xs font-medium text-ink transition-colors cursor-pointer"
+          >
+            Accept high-confidence
+          </button>
+          <button
+            onClick={onDiscard}
+            type="button"
+            className="px-2.5 py-1.5 rounded-md border border-hairline bg-paper hover:bg-wash text-xs font-medium text-ink-light hover:text-ink transition-colors cursor-pointer"
+          >
+            Discard
+          </button>
+          <button
+            onClick={onSubmitEvaluation}
+            disabled={!allConfirmed || loading}
+            type="button"
+            className="px-4 py-1.5 bg-seal hover:bg-seal-light disabled:opacity-40 text-white rounded-md text-xs font-heading font-semibold transition-colors flex items-center gap-1.5 cursor-pointer disabled:cursor-not-allowed shadow-xs"
+          >
+            {loading && <span className="material-symbols-outlined text-[14px] animate-spin">progress_activity</span>}
+            <span>Run evaluation &rarr;</span>
+          </button>
         </div>
       </div>
 
-      {/* Main Workspace (Split Grid) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        {/* LEFT COLUMN: Package Canvas with Bounding Boxes (5 cols) */}
-        <div className="lg:col-span-5 bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden sticky top-24 shadow-2xl flex flex-col">
-          {/* Canvas Toolbar */}
-          <div className="bg-slate-950/80 px-4 py-3 border-b border-slate-800/80 flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <span className="text-xs font-semibold text-slate-300">Packaging Canvas</span>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400">
+      {/* Split Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1 items-start">
+        {/* LEFT: Package Image - Sticky */}
+        <div className="lg:col-span-5 bg-wash border border-hairline rounded-lg overflow-hidden flex flex-col lg:sticky lg:top-24 lg:h-[calc(100vh-8rem)]">
+          {/* Toolbar */}
+          <div className="px-4 py-2 border-b border-hairline flex items-center justify-between shrink-0 bg-white">
+            <span className="text-xs font-semibold text-ink flex items-center gap-1.5 font-mono">
+              <span className="material-symbols-outlined text-[15px] text-seal">crop_free</span>
+              Packaging canvas
+            </span>
+            <div className="flex items-center gap-1 text-ink-light">
+              <button
+                onClick={() => setZoomLevel((z) => Math.max(0.6, Number((z - 0.15).toFixed(2))))}
+                className="w-6 h-6 rounded flex items-center justify-center hover:bg-wash transition-colors text-xs font-bold cursor-pointer"
+                title="Zoom out"
+              >
+                −
+              </button>
+              <span className="text-[11px] font-mono w-11 text-center font-medium text-ink">
                 {Math.round(zoomLevel * 100)}%
               </span>
-            </div>
-
-            <div className="flex items-center space-x-1">
               <button
-                onClick={() => setZoomLevel((z) => Math.max(0.7, z - 0.15))}
-                className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
-                title="Zoom Out"
+                onClick={() => setZoomLevel((z) => Math.min(2.5, Number((z + 0.15).toFixed(2))))}
+                className="w-6 h-6 rounded flex items-center justify-center hover:bg-wash transition-colors text-xs font-bold cursor-pointer"
+                title="Zoom in"
               >
-                <ZoomOut className="w-3.5 h-3.5" />
-              </button>
-              <button
-                onClick={() => setZoomLevel((z) => Math.min(2.5, z + 0.15))}
-                className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
-                title="Zoom In"
-              >
-                <ZoomIn className="w-3.5 h-3.5" />
+                +
               </button>
               <button
                 onClick={() => setZoomLevel(1)}
-                className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
-                title="Reset View"
+                className={`px-1.5 py-0.5 rounded text-[11px] font-mono ml-1 transition-colors cursor-pointer ${
+                  zoomLevel === 1 ? "bg-seal/10 text-seal font-semibold" : "hover:bg-wash text-ink-light hover:text-ink"
+                }`}
+                title="Fit image to view"
               >
-                <RotateCcw className="w-3.5 h-3.5" />
+                Fit
               </button>
+              {previewUrl && (
+                <button
+                  onClick={() => setLightboxUrl(previewUrl)}
+                  className="p-1 rounded hover:bg-wash transition-colors text-ink-light hover:text-ink ml-1 cursor-pointer flex items-center"
+                  title="Enlarge to full-screen view"
+                >
+                  <span className="material-symbols-outlined text-[16px]">fullscreen</span>
+                </button>
+              )}
             </div>
           </div>
 
-          {/* Interactive Image Container */}
-          <div className="relative bg-slate-950 p-4 min-h-[420px] max-h-[620px] overflow-auto flex items-center justify-center">
+          {/* Image Canvas */}
+          <div className="relative bg-paper/60 p-3 flex-1 min-h-0 overflow-auto">
             {previewUrl ? (
-              <div
-                className="relative inline-block transition-transform duration-150 ease-out origin-top"
-                style={{ transform: `scale(${zoomLevel})` }}
-              >
+              <div className="w-full h-full flex items-center justify-center min-w-fit min-h-fit">
+                <div
+                  className="relative inline-block select-none transition-transform duration-150 ease-out"
+                  style={{
+                    transform: zoomLevel !== 1 ? `scale(${zoomLevel})` : undefined,
+                    transformOrigin: "center center",
+                    maxHeight: zoomLevel === 1 ? "100%" : undefined,
+                    maxWidth: zoomLevel === 1 ? "100%" : undefined,
+                  }}
+                >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  ref={imgRef}
+                  ref={imageRef}
                   src={previewUrl}
                   alt="Packaging label"
-                  className="max-h-[520px] w-auto rounded-lg object-contain shadow-md"
+                  onLoad={handleImageLoad}
+                  className="rounded border border-hairline bg-white shadow-xs block select-none"
+                  style={{
+                    objectFit: "contain",
+                    maxHeight: zoomLevel === 1 ? "100%" : undefined,
+                    maxWidth: zoomLevel === 1 ? "100%" : undefined,
+                  }}
                 />
 
-                {/* Bounding Boxes Overlay */}
-                {fields.map((f) => {
+                {/* Bounding Boxes Overlays */}
+                {imageNaturalSize && fields.map((f) => {
                   const isSelected = selectedField === f.field_name;
                   const isLow = f.confidence < confidenceThreshold;
-                  const [x, y, w, h] = f.bounding_box;
-
-                  // Render bounding box if valid
+                  const [x, y, w, h] = f.bounding_box || [0, 0, 0, 0];
                   if (w <= 0 || h <= 0) return null;
+
+                  // Ignore dummy uninitialized fallback coordinates (0, 0, 100, 50) when no text was detected
+                  if (x === 0 && y === 0 && ((w === 100 && h <= 100) || !f.raw_value || f.raw_value.trim() === "")) {
+                    return null;
+                  }
+
+                  // Precise percentage calculations relative to the original source image dimensions
+                  const leftPct = (x / imageNaturalSize.width) * 100;
+                  const topPct = (y / imageNaturalSize.height) * 100;
+                  const widthPct = (w / imageNaturalSize.width) * 100;
+                  const heightPct = (h / imageNaturalSize.height) * 100;
 
                   return (
                     <div
                       key={f.field_name}
-                      onClick={() => setSelectedField(f.field_name)}
-                      className={`absolute cursor-pointer transition-all duration-200 ${
-                        isSelected
-                          ? "ring-2 ring-cyan-400 bg-cyan-400/20 z-20 shadow-lg shadow-cyan-500/20"
-                          : isLow
-                          ? "border-2 border-dashed border-amber-400 bg-amber-400/10 z-10 hover:bg-amber-400/20"
-                          : "border border-emerald-400/80 bg-emerald-400/10 z-0 hover:bg-emerald-400/20"
-                      }`}
-                      style={{
-                        left: `${x}px`,
-                        top: `${y}px`,
-                        width: `${w}px`,
-                        height: `${h}px`,
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleSelectField(f.field_name);
                       }}
-                      title={`${f.field_name} (${Math.round(f.confidence * 100)}%)`}
+                      className={`absolute cursor-pointer transition-all duration-150 rounded-xs ${
+                        isLow
+                          ? `border-dashed border-orange-500 bg-orange-500/20 hover:bg-orange-500/30 ${isSelected ? "border-[3px] z-30 shadow-md ring-2 ring-orange-400" : "border-[2px] z-10"}`
+                          : `border-green-500 bg-green-500/20 hover:bg-green-500/30 ${isSelected ? "border-[3px] z-30 shadow-md ring-2 ring-green-400" : "border-[2px] z-0"}`
+                      } print:bg-transparent print:border-2`}
+                      style={{
+                        left: `${leftPct}%`,
+                        top: `${topPct}%`,
+                        width: `${widthPct}%`,
+                        height: `${heightPct}%`,
+                        minWidth: "6px",
+                        minHeight: "6px",
+                      }}
+                      title={`${FIELD_METADATA[f.field_name]?.label || f.field_name}: ${f.raw_value || "—"} (${Math.round(f.confidence * 100)}%)`}
                     >
-                      {isSelected && (
-                        <div className="absolute -top-6 left-0 bg-cyan-500 text-slate-950 text-[10px] font-bold px-2 py-0.5 rounded shadow whitespace-nowrap">
-                          {FIELD_METADATA[f.field_name]?.label || f.field_name}
-                        </div>
-                      )}
+                      <div className={`absolute top-0 left-full ml-1 ${isLow ? "bg-orange-500" : "bg-green-500"} text-white text-[11px] font-bold px-2 py-1 rounded-sm shadow-sm whitespace-nowrap z-40 pointer-events-none flex items-center gap-1`}>
+                        <span>{FIELD_METADATA[f.field_name]?.label || f.field_name}</span>
+                      </div>
                     </div>
                   );
                 })}
               </div>
+              </div>
             ) : (
-              <div className="text-center text-slate-500 p-8">
-                <Layers className="w-12 h-12 mx-auto text-slate-700 mb-2" />
-                <p className="text-xs">No label image preview available</p>
+              <div className="text-center text-ink-light p-8">
+                <p className="text-sm">No label image preview available</p>
               </div>
             )}
           </div>
 
-          {/* Canvas Footer Legend */}
-          <div className="bg-slate-950/90 px-4 py-2.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
+          {/* Legend */}
+          <div className="px-4 py-2 border-t border-hairline flex items-center justify-between text-[11px] text-ink-light shrink-0 bg-white">
             <div className="flex items-center gap-3">
               <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded bg-emerald-400 inline-block" /> High Confidence
+                <span className="w-2.5 h-2.5 rounded-sm bg-stamp-green/40 border border-stamp-green/70 inline-block" /> High confidence
               </span>
               <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded bg-amber-400 border border-dashed inline-block" /> Attention
+                <span className="w-2.5 h-2.5 rounded-sm bg-ochre/30 border border-dashed border-ochre inline-block" /> Needs review
               </span>
             </div>
-            <span className="font-mono text-[10px] text-slate-500">Click box to jump to field</span>
+            <span className="font-mono text-[10px] hidden sm:inline">Click overlay box to select</span>
           </div>
         </div>
 
-        {/* RIGHT COLUMN: Field Verification Deck (7 cols) */}
-        <div className="lg:col-span-7 space-y-4">
-          {/* Filter Segmented Control */}
-          <div className="flex items-center justify-between">
-            <div className="inline-flex p-1 bg-slate-900 border border-slate-800 rounded-xl">
-              <button
-                onClick={() => setFilterMode("all")}
-                className={`px-3 py-1 text-xs font-semibold rounded-lg transition-all ${
-                  filterMode === "all" ? "bg-slate-800 text-white shadow" : "text-slate-400 hover:text-slate-200"
-                }`}
-              >
-                All Declarations ({fields.length})
-              </button>
-              <button
-                onClick={() => setFilterMode("attention")}
-                className={`px-3 py-1 text-xs font-semibold rounded-lg transition-all ${
-                  filterMode === "attention"
-                    ? "bg-amber-500/20 text-amber-300 border border-amber-500/30"
-                    : "text-slate-400 hover:text-slate-200"
-                }`}
-              >
-                Needs Review ({lowConfidenceCount})
-              </button>
-              <button
-                onClick={() => setFilterMode("confirmed")}
-                className={`px-3 py-1 text-xs font-semibold rounded-lg transition-all ${
-                  filterMode === "confirmed"
-                    ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"
-                    : "text-slate-400 hover:text-slate-200"
-                }`}
-              >
-                Confirmed ({confirmedCount})
-              </button>
+        {/* RIGHT: Field Verification - Scrollable column */}
+        <div className="lg:col-span-7 flex flex-col">
+          {/* Filter Tabs */}
+          <div className="flex items-center justify-between border-b border-hairline shrink-0 pb-1">
+            <div className="flex items-center gap-0">
+              {[
+                { mode: "all" as const, label: `All (${fields.length})` },
+                { mode: "attention" as const, label: `Needs review (${lowConfidenceCount})` },
+                { mode: "confirmed" as const, label: `Confirmed (${confirmedCount})` },
+              ].map(({ mode, label }) => (
+                <button
+                  key={mode}
+                  onClick={() => setFilterMode(mode)}
+                  className={`px-3 py-2 text-xs font-medium transition-all border-b-2 cursor-pointer ${
+                    filterMode === mode
+                      ? "border-seal text-ink"
+                      : "border-transparent text-ink-light hover:text-ink"
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
             </div>
-
-            <span className="text-xs text-slate-400 hidden sm:inline">
-              Rule checks run strictly on <strong>Confirmed Values</strong>
+            <span className="text-[11px] text-ink-light hidden sm:inline pb-2">
+              Rules run on <strong className="text-ink">confirmed values</strong> only
             </span>
           </div>
 
-          {/* Cards Stack */}
-          <div className="space-y-4">
+          {/* Ledger Rows - Scrollable container */}
+          <div className="flex flex-col divide-y divide-hairline pr-2 py-1">
             {filteredFields.map((field) => {
               const meta = FIELD_METADATA[field.field_name] || {
-                label: field.field_name,
-                ruleCitation: "Mandatory statutory declaration",
+                label: field.field_name.replace(/_/g, " "),
+                ruleCitation: "Mandatory declaration",
                 placeholder: "Enter value",
               };
               const isSelected = selectedField === field.field_name;
@@ -338,224 +362,208 @@ export const ExtractionReviewStudio: React.FC<ExtractionReviewStudioProps> = ({
               return (
                 <div
                   key={field.field_name}
+                  id={`field-row-${field.field_name}`}
                   onClick={() => setSelectedField(field.field_name)}
-                  className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
-                    isSelected
-                      ? "border-cyan-500/50 bg-slate-900/90 shadow-xl shadow-cyan-500/5 ring-1 ring-cyan-500/30"
-                      : isConfirmed
-                      ? "border-emerald-500/30 bg-slate-900/60 shadow-sm"
-                      : isLow
-                      ? "border-amber-500/40 bg-amber-950/10 shadow-sm"
-                      : "border-slate-800/90 bg-slate-900/50 hover:border-slate-700"
-                  }`}
+                  className={`py-4 cursor-pointer transition-colors ${
+                    isSelected ? "bg-wash/60 -mx-3 px-3 rounded" : ""
+                  } ${isLow && !isConfirmed ? "border-l-3 border-l-ochre pl-3 -ml-3" : ""}`}
                 >
-                  {/* Card Header */}
-                  <div className="p-4 sm:p-5 pb-3 flex items-start justify-between gap-3">
-                    <div>
-                      <div className="flex items-center space-x-2">
-                        <h3 className="text-sm sm:text-base font-bold text-white">{meta.label}</h3>
-                        {isConfirmed && (
-                          <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
-                            <Check className="w-3 h-3" />
-                            <span>Confirmed</span>
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-xs text-slate-400 font-mono mt-0.5">{meta.ruleCitation}</p>
+                  {/* Row Header */}
+                  <div className="flex items-start justify-between gap-3 mb-2">
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-sm font-heading font-semibold text-ink">
+                        {meta.label}
+                      </h3>
+                      {isConfirmed && (
+                        <span className="text-stamp-green text-xs">✓</span>
+                      )}
                     </div>
-
-                    {/* Confidence Pill */}
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      <span className="text-[11px] font-mono text-ink-light">
+                        {meta.ruleCitation}
+                      </span>
                       <span
-                        className={`text-xs font-mono font-bold px-2.5 py-1 rounded-lg border ${
+                        className={`text-[11px] font-mono font-medium px-2 py-0.5 rounded ${
                           isLow
-                            ? "bg-amber-500/20 text-amber-300 border-amber-500/30"
-                            : "bg-emerald-500/20 text-emerald-300 border-emerald-500/30"
+                            ? "bg-ochre-light text-ochre"
+                            : "bg-stamp-green-light text-stamp-green"
                         }`}
                       >
-                        {Math.round(field.confidence * 100)}% Conf
+                        {Math.round(field.confidence * 100)}%
                       </span>
                     </div>
                   </div>
 
-                  {/* Card Body: Crop & Value Comparison */}
-                  <div className="px-4 sm:px-5 pb-4 space-y-3">
-                    {/* Visual Crop Evidence if available */}
-                    {cropFullUrl && (
-                      <div className="bg-slate-950/80 p-2.5 rounded-xl border border-slate-800 flex items-center justify-between gap-3">
-                        <div className="flex items-center gap-2 text-xs text-slate-400">
-                          <Eye className="w-3.5 h-3.5 text-cyan-400" />
-                          <span>Detected Packaging Snippet:</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={cropFullUrl}
-                            alt="Crop preview"
-                            className="h-10 max-w-[200px] object-contain rounded border border-slate-700 bg-white"
-                          />
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setLightboxUrl(cropFullUrl);
-                            }}
-                            className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
-                            title="Expand Crop"
-                          >
-                            <Maximize2 className="w-3.5 h-3.5" />
-                          </button>
-                        </div>
-                      </div>
-                    )}
+                  {/* Evidence Crop */}
+                  {cropFullUrl && (
+                    <div className="flex items-center gap-3 mb-2 text-xs text-ink-light">
+                      <span>Detected snippet:</span>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={cropFullUrl}
+                        alt="Crop preview"
+                        className="h-8 max-w-[180px] object-contain rounded border border-hairline bg-white cursor-pointer"
+                        onClick={(e) => { e.stopPropagation(); setLightboxUrl(cropFullUrl); }}
+                      />
+                    </div>
+                  )}
 
-                    {/* Extracted Value Display / Edit Form */}
-                    {isEditing ? (
-                      <div className="space-y-2 bg-slate-950 p-3 rounded-xl border border-cyan-500/40">
-                        <label className="text-[11px] font-semibold text-cyan-400 uppercase tracking-wider block">
-                          Manual Value Correction
-                        </label>
-                        <textarea
-                          rows={2}
-                          value={editDraftValues[field.field_name] ?? ""}
-                          onChange={(e) =>
-                            setEditDraftValues((prev) => ({
-                              ...prev,
-                              [field.field_name]: e.target.value,
-                            }))
-                          }
-                          placeholder={meta.placeholder}
-                          className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs sm:text-sm text-white font-mono focus:outline-none focus:border-cyan-400"
-                        />
-                        <div className="flex items-center justify-end gap-2">
-                          <button
-                            onClick={() => setEditingField(null)}
-                            type="button"
-                            className="px-3 py-1.5 rounded-lg text-xs text-slate-400 hover:text-white"
-                          >
-                            Cancel
-                          </button>
-                          <button
-                            onClick={() => handleSaveEdit(field.field_name)}
-                            type="button"
-                            className="px-4 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-xs font-bold text-white shadow"
-                          >
-                            Save & Confirm
-                          </button>
-                        </div>
+                  {/* Editing Mode */}
+                  {isEditing ? (
+                    <div
+                      className="space-y-2 bg-paper p-3 rounded-md border border-seal/30 mt-2"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <label className="text-[11px] font-medium text-seal block">
+                        Manual value correction
+                      </label>
+                      <textarea
+                        rows={2}
+                        value={editDraftValues[field.field_name] ?? ""}
+                        onChange={(e) =>
+                          setEditDraftValues((prev) => ({
+                            ...prev,
+                            [field.field_name]: e.target.value,
+                          }))
+                        }
+                        placeholder={meta.placeholder}
+                        className="w-full bg-white border border-hairline rounded-md p-2.5 text-sm text-ink font-mono focus:outline-none focus:border-seal"
+                      />
+                      <div className="flex items-center justify-end gap-2">
+                        <button
+                          onClick={() => setEditingField(null)}
+                          type="button"
+                          className="px-3 py-1.5 text-xs text-ink-light hover:text-ink cursor-pointer"
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          onClick={() => handleSaveEdit(field.field_name)}
+                          type="button"
+                          className="px-4 py-1.5 rounded-md bg-seal text-white text-xs font-medium cursor-pointer"
+                        >
+                          Save &amp; confirm
+                        </button>
                       </div>
-                    ) : (
-                      <div className="space-y-2">
-                        {/* Current Active Value */}
-                        <div className="bg-slate-950/80 p-3 rounded-xl border border-slate-800">
-                          <div className="flex items-center justify-between mb-1">
-                            <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
-                              {field.confirmed_value ? "Confirmed Value" : "Extracted Raw Value"}
-                            </span>
-                            <span className="text-[10px] font-mono text-slate-500">
-                              via {field.ocr_source}
-                            </span>
-                          </div>
-                          <p className="text-xs sm:text-sm text-slate-100 font-mono break-words">
+                    </div>
+                  ) : (
+                    <div className="space-y-2">
+                      {/* Current Value */}
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="flex-1 min-w-0">
+                          <span className="text-[11px] text-ink-light block mb-0.5">
+                            {field.confirmed_value ? "Confirmed value" : "Extracted raw value"}
+                            <span className="ml-2 font-mono text-[10px]">via {field.ocr_source}</span>
+                          </span>
+                          <p className="text-sm text-ink font-mono break-words">
                             {field.confirmed_value || field.raw_value || (
-                              <span className="text-rose-400 italic">No declaration detected</span>
+                              <span className="text-brick italic">No declaration detected</span>
                             )}
                           </p>
                         </div>
-
-                        {/* AI Suggested Value (if present and different from raw) */}
-                        {field.suggested_value && field.suggested_value !== field.raw_value && (
-                          <div className="bg-purple-950/20 border border-purple-500/30 p-2.5 rounded-xl flex items-center justify-between gap-3">
-                            <div className="space-y-0.5">
-                              <div className="flex items-center gap-1.5 text-purple-300 text-xs font-semibold">
-                                <Sparkles className="w-3.5 h-3.5 text-purple-400" />
-                                <span>AI Typo Correction ({field.suggestion_source || "Perception"}):</span>
-                              </div>
-                              <p className="text-xs text-slate-200 font-mono break-words">
-                                &ldquo;{field.suggested_value}&rdquo;
-                              </p>
-                            </div>
-                            <button
-                              onClick={() =>
-                                onConfirmField(field.field_name, field.suggested_value!, "accepted_suggestion")
-                              }
-                              type="button"
-                              className="px-3 py-1.5 rounded-lg bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold whitespace-nowrap shadow transition-colors"
-                            >
-                              Use AI Fix
-                            </button>
-                          </div>
-                        )}
                       </div>
-                    )}
 
-                    {/* Quick Action Bar */}
-                    {!isEditing && (
-                      <div className="pt-2 flex items-center justify-between border-t border-slate-800/80 gap-2">
-                        <button
-                          onClick={() => handleStartEdit(field.field_name, field.confirmed_value || field.raw_value)}
-                          type="button"
-                          className="px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center gap-1.5 transition-colors"
+                      {/* AI Suggestion */}
+                      {field.suggested_value && field.suggested_value !== field.raw_value && (
+                        <div
+                          className="bg-wash border border-hairline p-2.5 rounded-md flex items-center justify-between gap-3"
+                          onClick={(e) => e.stopPropagation()}
                         >
-                          <Edit3 className="w-3.5 h-3.5 text-slate-400" />
-                          <span>Manual Edit</span>
-                        </button>
-
-                        <div className="flex items-center gap-2">
+                          <div className="space-y-0.5 flex-1 min-w-0">
+                            <span className="text-xs font-medium text-seal">
+                              AI correction ({field.suggestion_source || "Perception"}):
+                            </span>
+                            <p className="text-xs text-ink font-mono break-words">
+                              &ldquo;{field.suggested_value}&rdquo;
+                            </p>
+                          </div>
                           <button
-                            onClick={() => onConfirmField(field.field_name, field.raw_value, "accepted_raw")}
+                            onClick={() =>
+                              onConfirmField(
+                                field.field_name,
+                                field.suggested_value!,
+                                "accepted_suggestion"
+                              )
+                            }
                             type="button"
-                            className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
-                              field.confirmed_value === field.raw_value
-                                ? "bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20"
-                                : "bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700"
-                            }`}
+                            className="px-3 py-1.5 rounded-md bg-seal text-white text-xs font-medium whitespace-nowrap cursor-pointer"
                           >
-                            <Check className="w-3.5 h-3.5" />
-                            <span>{field.confirmed_value === field.raw_value ? "Accepted" : "Accept Raw"}</span>
+                            Use fix
                           </button>
                         </div>
-                      </div>
-                    )}
-                  </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Action Bar */}
+                  {!isEditing && (
+                    <div
+                      className="pt-2 mt-2 flex items-center justify-between gap-2"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <button
+                        onClick={() =>
+                          handleStartEdit(
+                            field.field_name,
+                            field.confirmed_value || field.raw_value
+                          )
+                        }
+                        type="button"
+                        className="text-xs text-ink-light hover:text-ink font-medium cursor-pointer"
+                      >
+                        Edit manually
+                      </button>
+                      <button
+                        onClick={() =>
+                          onConfirmField(field.field_name, field.raw_value, "accepted_raw")
+                        }
+                        type="button"
+                        className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all cursor-pointer ${
+                          field.confirmed_value === field.raw_value
+                            ? "bg-stamp-green text-white"
+                            : "border border-hairline bg-paper hover:bg-wash text-ink"
+                        }`}
+                      >
+                        {field.confirmed_value === field.raw_value ? "Accepted ✓" : "Accept raw"}
+                      </button>
+                    </div>
+                  )}
                 </div>
               );
             })}
           </div>
 
-          {/* Sticky Bottom Final Submission Bar */}
-          <div className="sticky bottom-4 bg-slate-900/95 backdrop-blur-xl border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-4 z-30">
-            <div className="text-xs text-slate-300 flex items-center gap-2">
+          {/* Bottom Submission Bar */}
+          <div className="shrink-0 bg-wash border border-hairline rounded-lg p-3.5 mt-2 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <span className="text-xs text-ink">
               {allConfirmed ? (
-                <span className="text-emerald-400 font-bold flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4" /> All {fields.length} packaging declarations confirmed.
+                <span className="text-stamp-green font-medium">
+                  ✓ All {fields.length} declarations confirmed.
                 </span>
               ) : (
-                <span className="text-amber-400 font-medium flex items-center gap-1.5">
-                  <HelpCircle className="w-4 h-4" /> Confirm remaining declarations ({fields.length - confirmedCount} left).
+                <span className="text-ink-light">
+                  Confirm remaining declarations ({fields.length - confirmedCount} left).
                 </span>
               )}
-            </div>
-
+            </span>
             <div className="flex items-center gap-3 w-full sm:w-auto">
               <button
                 onClick={onDiscard}
                 type="button"
-                className="px-4 py-2.5 text-xs text-slate-400 hover:text-white transition-colors"
+                className="text-xs text-ink-light hover:text-ink cursor-pointer"
               >
-                Discard & Upload New
+                Discard &amp; upload new
               </button>
               <button
                 onClick={onSubmitEvaluation}
                 disabled={!allConfirmed || loading}
                 type="button"
-                className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 hover:from-emerald-500 hover:to-teal-500 disabled:opacity-40 text-white rounded-xl text-xs sm:text-sm font-bold transition-all shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-5 py-2.5 bg-seal hover:bg-seal-light disabled:opacity-40 text-white rounded-md text-sm font-heading font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:cursor-not-allowed"
               >
                 {loading ? (
-                  <span className="animate-spin mr-1">⏳</span>
-                ) : (
-                  <ShieldCheck className="w-4 h-4 text-white" />
-                )}
-                <span>{loading ? loadingStatus : "Run Statutory Rule Evaluation →"}</span>
+                  <span className="material-symbols-outlined text-[16px] animate-spin">progress_activity</span>
+                ) : null}
+                <span>{loading ? loadingStatus : "Run statutory evaluation →"}</span>
               </button>
             </div>
           </div>
@@ -565,22 +573,39 @@ export const ExtractionReviewStudio: React.FC<ExtractionReviewStudioProps> = ({
       {/* Lightbox Modal */}
       {lightboxUrl && (
         <div
-          className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-ink/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 animate-fadeIn"
           onClick={() => setLightboxUrl(null)}
         >
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 max-w-xl max-h-[85vh] overflow-hidden">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={lightboxUrl}
-              alt="Evidence high-res crop"
-              className="max-h-[70vh] w-auto mx-auto object-contain rounded-lg bg-white"
-            />
-            <div className="mt-3 text-center">
+          <div
+            className="bg-white border border-hairline rounded-xl p-4 max-w-4xl max-h-[90vh] overflow-hidden shadow-xl flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between pb-3 border-b border-hairline shrink-0">
+              <span className="text-xs font-mono font-semibold text-ink flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-[16px] text-seal">zoom_in</span>
+                High-Resolution Inspection Preview
+              </span>
               <button
                 onClick={() => setLightboxUrl(null)}
-                className="px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-white rounded-lg"
+                className="text-ink-light hover:text-ink text-sm p-1 rounded hover:bg-wash transition-colors cursor-pointer"
               >
-                Close Preview
+                ✕
+              </button>
+            </div>
+            <div className="flex-1 overflow-auto p-2 flex items-center justify-center min-h-0 my-2">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={lightboxUrl}
+                alt="High-resolution inspection view"
+                className="max-h-[75vh] w-auto mx-auto object-contain rounded border border-hairline shadow-xs"
+              />
+            </div>
+            <div className="pt-2 border-t border-hairline flex items-center justify-end shrink-0">
+              <button
+                onClick={() => setLightboxUrl(null)}
+                className="px-4 py-1.5 bg-seal hover:bg-seal-light text-xs font-medium text-white rounded-md cursor-pointer transition-colors"
+              >
+                Done
               </button>
             </div>
           </div>
