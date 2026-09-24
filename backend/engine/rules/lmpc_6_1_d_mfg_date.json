@@ -1,0 +1,15 @@
+{
+  "rule_id": "LMPC-6.1.d",
+  "description": "Package declares the month and year in which the commodity was manufactured, pre-packed, or imported.",
+  "source_citation": "Legal Metrology (Packaged Commodities) Rules, 2011, Rule 6(1)(d)",
+  "applicable_category": [],
+  "excluded_category": ["packaged_food"],
+  "required_field": "mfg_month_year",
+  "validation_condition": { "op": "non_empty" },
+  "severity": "FAIL",
+  "exceptions": [],
+  "effective_date": "2011-04-01",
+  "version": 1,
+  "verification_status": "confirmed",
+  "review_note": "This clause's own first proviso is unambiguous: 'Provided that for packages containing food articles, the provisions of the Prevention of Food Adulteration Act 1954 and the rules made there under shall apply' -- i.e. food packages are explicitly routed away from this LMPC rule to the food-law equivalent (now FSSAI). Because FSSAI-specific rules are Advanced/deferred scope in this project, this rule is deliberately excluded for packaged_food and will not fire in the MVP. Month/year-of-manufacture checking for food should be re-added under an FSSAI rule set when that layer is built, not under this LMPC rule -- do not silently re-include packaged_food here without also citing the FSSAI source."
+}

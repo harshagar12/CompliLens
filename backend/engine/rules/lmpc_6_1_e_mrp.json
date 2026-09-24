@@ -1,0 +1,21 @@
+{
+  "rule_id": "LMPC-6.1.e",
+  "description": "Package declares the retail sale price (MRP), inclusive of all taxes, printed in the prescribed 'Maximum or Max. retail price Rs.../ \u20b9... inclusive of all taxes' format.",
+  "source_citation": "Legal Metrology (Packaged Commodities) Rules, 2011, Rule 6(1)(e); definition of 'retail sale price' at Rule 2(m)",
+  "applicable_category": ["packaged_food"],
+  "excluded_category": [],
+  "required_field": "mrp",
+  "validation_condition": { "op": "regex_match", "pattern": "mrp_price_like" },
+  "severity": "FAIL",
+  "exceptions": [
+    {
+      "condition": { "op": "category_in", "categories": ["alcoholic_beverage"] },
+      "modified_requirement": "State excise laws govern retail price declaration for alcoholic beverages/spirituous liquor instead, in the state where manufactured, where such laws provide for a retail-price declaration.",
+      "source": "Rule 6(1)(e), first proviso"
+    }
+  ],
+  "effective_date": "2011-04-01",
+  "version": 1,
+  "verification_status": "confirmed",
+  "review_note": "Not excluded for food -- unlike clauses (a) and (d), no food-specific carve-out appears anywhere in Rule 6(1)(e) or its provisos. MRP declaration applies to packaged food normally."
+}

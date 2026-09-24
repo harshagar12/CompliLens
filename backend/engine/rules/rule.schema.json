@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CompliLens Rule",
+  "type": "object",
+  "required": [
+    "rule_id", "description", "source_citation", "applicable_category",
+    "required_field", "validation_condition", "severity",
+    "effective_date", "version", "verification_status"
+  ],
+  "properties": {
+    "rule_id": { "type": "string", "pattern": "^LMPC-[0-9A-Za-z_.-]+$" },
+    "description": { "type": "string" },
+    "source_citation": { "type": "string" },
+    "applicable_category": { "type": "array", "items": { "type": "string" } },
+    "excluded_category": { "type": "array", "items": { "type": "string" }, "default": [] },
+    "required_field": { "type": "string" },
+    "validation_condition": {
+      "type": "object",
+      "required": ["op"],
+      "properties": {
+        "op": {
+          "type": "string",
+          "enum": [
+            "non_empty", "regex_match", "in_range", "lookup_membership",
+            "package_capacity_lte", "package_net_quantity_lte",
+            "package_net_quantity_between", "package_weight_gt",
+            "category_in", "and"
+          ]
+        }
+      }
+    },
+    "severity": { "type": "string", "enum": ["FAIL", "WARN", "NEEDS_REVIEW"] },
+    "exceptions": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "required": ["condition", "modified_requirement", "source"]
+      }
+    },
+    "effective_date": { "type": "string", "format": "date" },
+    "version": { "type": "integer", "minimum": 1 },
+    "verification_status": { "type": "string", "enum": ["confirmed", "needs_legal_review"] },
+    "review_note": { "type": "string" },
+    "project_scope": { "type": "string", "enum": ["mvp", "final_year_target", "advanced"], "default": "mvp" },
+    "implementation_note": { "type": "string" }
+  }
+}

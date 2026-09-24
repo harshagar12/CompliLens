@@ -1,0 +1,14 @@
+{
+  "rule_id": "LMPC-6.2",
+  "description": "Package declares the name, address, and telephone number -- and email, if available -- of a person or office that can be contacted in case of consumer complaints.",
+  "source_citation": "Legal Metrology (Packaged Commodities) Rules, 2011, Rule 6(2)",
+  "applicable_category": ["packaged_food"],
+  "excluded_category": [],
+  "required_field": "consumer_care",
+  "validation_condition": { "op": "non_empty" },
+  "severity": "FAIL",
+  "exceptions": [],
+  "effective_date": "2011-04-01",
+  "version": 1,
+  "verification_status": "confirmed"
+}

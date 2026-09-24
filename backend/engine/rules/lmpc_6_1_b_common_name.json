@@ -1,0 +1,14 @@
+{
+  "rule_id": "LMPC-6.1.b",
+  "description": "Package declares the common or generic name of the commodity contained in it. If the package contains more than one product, the name and quantity or number of each product is declared.",
+  "source_citation": "Legal Metrology (Packaged Commodities) Rules, 2011, Rule 6(1)(b)",
+  "applicable_category": ["packaged_food"],
+  "excluded_category": [],
+  "required_field": "common_name",
+  "validation_condition": { "op": "non_empty" },
+  "severity": "FAIL",
+  "exceptions": [],
+  "effective_date": "2011-04-01",
+  "version": 1,
+  "verification_status": "confirmed"
+}

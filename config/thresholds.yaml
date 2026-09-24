@@ -1,0 +1,16 @@
+# CompliLens Thresholds and Engine Configuration
+
+ocr:
+  default_provider: "rapidocr"  # "rapidocr" (local CPU) or "gemini-vision" (free tier)
+  cer_threshold: 0.15
+  wer_threshold: 0.20
+
+extraction:
+  confidence_review_threshold: 0.75  # fields with confidence < 0.75 are flagged for human review in Phase 3
+  auto_suggest_corrections: true
+
+evaluation:
+  scope: "mvp"  # "mvp", "final_year_target", or "advanced"
+  fail_on_missing_mandatory: true
+  tolerance_table: "first_schedule_table_1"
+  standard_pack_sizes_table: "second_schedule_food_subset"

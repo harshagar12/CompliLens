@@ -1,0 +1,17 @@
+{
+  "table_id": "first_schedule_table_1",
+  "source_citation": "Legal Metrology (Packaged Commodities) Rules, 2011, First Schedule, Table I (see Rule 2(e), Rule 22)",
+  "unit": "g_or_ml",
+  "note": "Exactly one of max_error_percent or max_error_absolute applies per band, per the source table. Rounding: for declared quantity <=1000, round the computed error to the nearest one-tenth of a g/ml; for >1000, round to the next whole g/ml (Rule 22(2)/Schedule note).",
+  "bands": [
+    { "min": 0,     "max": 50,    "max_error_percent": 9,   "max_error_absolute": null },
+    { "min": 50,    "max": 100,   "max_error_percent": null, "max_error_absolute": 4.5 },
+    { "min": 100,   "max": 200,   "max_error_percent": 4.5, "max_error_absolute": null },
+    { "min": 200,   "max": 300,   "max_error_percent": null, "max_error_absolute": 9 },
+    { "min": 300,   "max": 500,   "max_error_percent": 3,   "max_error_absolute": null },
+    { "min": 500,   "max": 1000,  "max_error_percent": null, "max_error_absolute": 15 },
+    { "min": 1000,  "max": 10000, "max_error_percent": 1.5, "max_error_absolute": null },
+    { "min": 10000, "max": 15000, "max_error_percent": null, "max_error_absolute": 150 },
+    { "min": 15000, "max": null,  "max_error_percent": 1.0, "max_error_absolute": null }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "rule_id": "LMPC-6.1.a",
+  "description": "Package declares the manufacturer's name and complete address; or, if the manufacturer is not the packer, the names and addresses of both manufacturer and packer; or, for imported packages, the importer's name and address.",
+  "source_citation": "Legal Metrology (Packaged Commodities) Rules, 2011, Rule 6(1)(a)",
+  "applicable_category": ["packaged_food"],
+  "excluded_category": [],
+  "required_field": "manufacturer_name_address",
+  "validation_condition": { "op": "regex_match", "pattern": "address_like" },
+  "severity": "FAIL",
+  "exceptions": [
+    {
+      "condition": { "op": "package_capacity_lte", "value_cc": 5 },
+      "modified_requirement": "An identifying mark or inscription sufficient for a consumer to identify the manufacturer/packer/importer satisfies this rule; a full address is not required.",
+      "source": "Rule 10(1), first proviso"
+    }
+  ],
+  "effective_date": "2011-04-01",
+  "version": 1,
+  "verification_status": "needs_legal_review",
+  "review_note": "Explanation III to this clause states that for food-article packages, 'the provisions of this sub-rule shall not apply' and the Prevention of Food Adulteration Act, 1954 (now superseded by FSSAI's own regulations) applies instead. It is genuinely ambiguous whether 'this sub-rule' means clause (a) alone or all of sub-rule 6(1) -- Indian legislative drafting sometimes uses 'sub-rule' loosely. Rule 6(1)(d) carries its own separate, explicit food carve-out (see lmpc_6_1_d), which would be redundant if Explanation III already exempted the whole of 6(1) -- that's the basis for reading Explanation III as scoped to clause (a) only. This rule is currently kept active for packaged_food because FSSAI's own labelling regulations independently require the same address declaration, so the functional check is correct either way -- only the exact legal citation is uncertain. Confirm against the current consolidated LMPC text or FSSAI Packaging & Labelling Regulations before final submission, and update source_citation accordingly if it should cite FSSAI instead."
+}

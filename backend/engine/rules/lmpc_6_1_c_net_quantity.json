@@ -1,0 +1,14 @@
+{
+  "rule_id": "LMPC-6.1.c",
+  "description": "Package declares the net quantity of the commodity in the standard unit of weight, measure, or number applicable to it.",
+  "source_citation": "Legal Metrology (Packaged Commodities) Rules, 2011, Rule 6(1)(c)",
+  "applicable_category": ["packaged_food"],
+  "excluded_category": [],
+  "required_field": "net_quantity",
+  "validation_condition": { "op": "non_empty" },
+  "severity": "FAIL",
+  "exceptions": [],
+  "effective_date": "2011-04-01",
+  "version": 1,
+  "verification_status": "confirmed"
+}

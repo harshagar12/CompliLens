@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: complilens-db
+    environment:
+      POSTGRES_USER: complilens
+      POSTGRES_PASSWORD: complilens_password
+      POSTGRES_DB: complilens
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U complilens -d complilens"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: complilens-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - DATABASE_URL=postgresql://complilens:complilens_password@db:5432/complilens
+    volumes:
+      - ./data:/app/../data
+      - ./config:/app/../config
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: complilens-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  gotenberg:
+    image: gotenberg/gotenberg:8
+    container_name: complilens-gotenberg
+    ports:
+      - "3001:3000"
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

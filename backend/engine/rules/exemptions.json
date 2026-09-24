@@ -1,0 +1,44 @@
+{
+  "exemption_set": "LMPC-26",
+  "source_citation": "Legal Metrology (Packaged Commodities) Rules, 2011, Rule 26",
+  "note": "These are applicability pre-checks (Chapter V exemptions), evaluated by applicability.py BEFORE any Chapter II rule runs -- see agent PRD \u00a75.2. A match means the listed declarations are not evaluated at all for that package. Do not encode these as ordinary rules with a PASS/FAIL outcome.",
+  "exemptions": [
+    {
+      "id": "LMPC-26.a",
+      "description": "Packages of net weight or measure 10g/10ml or less are fully exempt from Chapter II declarations.",
+      "condition": { "op": "package_net_quantity_lte", "value_g_or_ml": 10 },
+      "effect": "fully_exempt"
+    },
+    {
+      "id": "LMPC-26.a-proviso",
+      "description": "Packages between 10g/ml and 20g/ml are not fully exempt: MRP and net quantity must still be declared even though other Chapter II declarations are not required.",
+      "condition": { "op": "package_net_quantity_between", "min": 10, "max": 20, "unit": "g_or_ml" },
+      "effect": "partial_exempt",
+      "still_required_fields": ["mrp", "net_quantity"]
+    },
+    {
+      "id": "LMPC-26.b",
+      "description": "Fast food packed by a restaurant, hotel, or similar establishment for direct/immediate consumption is exempt.",
+      "condition": { "op": "category_in", "categories": ["restaurant_fast_food"] },
+      "effect": "fully_exempt"
+    },
+    {
+      "id": "LMPC-26.c",
+      "description": "Scheduled and non-scheduled drug formulations covered under the Drugs (Price Control) Order, 1995 are exempt.",
+      "condition": { "op": "category_in", "categories": ["scheduled_drug_formulation", "non_scheduled_drug_formulation"] },
+      "effect": "fully_exempt"
+    },
+    {
+      "id": "LMPC-26.d",
+      "description": "Agricultural farm produce in packages above 50kg is exempt.",
+      "condition": {
+        "op": "and",
+        "conditions": [
+          { "op": "category_in", "categories": ["agricultural_produce"] },
+          { "op": "package_weight_gt", "value_kg": 50 }
+        ]
+      },
+      "effect": "fully_exempt"
+    }
+  ]
+}

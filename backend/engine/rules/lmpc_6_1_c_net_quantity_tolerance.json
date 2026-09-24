@@ -1,0 +1,16 @@
+{
+  "rule_id": "LMPC-6.1.c-tolerance",
+  "description": "Declared net quantity, when compared against the actual measured quantity, falls within the First Schedule's maximum permissible error for its declared-quantity band.",
+  "source_citation": "Legal Metrology (Packaged Commodities) Rules, 2011, Rule 6(1)(c) read with First Schedule, Table I",
+  "applicable_category": ["packaged_food"],
+  "excluded_category": [],
+  "required_field": "net_quantity",
+  "validation_condition": { "op": "in_range", "table": "first_schedule_table_1" },
+  "severity": "FAIL",
+  "exceptions": [],
+  "effective_date": "2011-04-01",
+  "version": 1,
+  "verification_status": "confirmed",
+  "project_scope": "final_year_target",
+  "implementation_note": "This rule needs a measured/verified net quantity, not just the value printed on the label -- the project explicitly does not physically re-weigh packages (see PRD Out of Scope). It can only be evaluated where a ground-truth measured quantity is supplied separately, e.g. during dataset annotation. It cannot run on OCR-extracted label text alone in production, and should be documented as a plausibility/format check rather than a genuine physical-quantity verification."
+}
