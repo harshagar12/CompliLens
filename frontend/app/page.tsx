@@ -51,7 +51,7 @@ export default function LandingPage() {
       {/* ── Split Hero ── */}
       <main className="flex-1 flex items-center overflow-hidden">
         <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
-          
+
           {/* ──── LEFT: Text Content ──── */}
           <div className="flex-1 max-w-xl text-center lg:text-left">
             <motion.div
@@ -166,12 +166,12 @@ export default function LandingPage() {
 
                   {/* Bounding boxes — solid borders, colored fills, with labels */}
                   {[
-                    { id: "name", idx: 1, label: "Name", top: 3, left: 3, w: 36, h: 22, color: "seal" },
-                    { id: "qty", idx: 2, label: "Net Qty", top: 6, left: 75, w: 18, h: 10, color: "seal" },
-                    { id: "mrp", idx: 3, label: "MRP", top: 17, left: 75, w: 18, h: 10, color: "seal" },
-                    { id: "mfr", idx: 4, label: "Manufacturer", top: 47, left: 75, w: 23, h: 14, color: "seal" },
-                    { id: "date", idx: 5, label: "Mfg Date", top: 28, left: 75, w: 18, h: 8, color: "ochre" },
-                    { id: "care", idx: 6, label: "Consumer Care", top: 62, left: 75, w: 23, h: 14, color: "stamp-green" },
+                    { id: "name", idx: 1, label: "Name", top: 17, left: 15, w: 34, h: 32, color: "seal" },
+                    { id: "qty", idx: 2, label: "Net Qty", top: 14, left: 58.5, w: 16.5, h: 7, color: "seal" },
+                    { id: "mrp", idx: 3, label: "MRP", top: 13.5, left: 78, w: 12, h: 9, color: "seal" },
+                    { id: "mfr", idx: 4, label: "Manufacturer", top: 54, left: 59, w: 29, h: 11, color: "seal" },
+                    { id: "date", idx: 5, label: "Mfg Date", top: 66, left: 59, w: 20, h: 4, color: "ochre" },
+                    { id: "care", idx: 6, label: "Consumer Care", top: 72, left: 59, w: 19, h: 12, color: "stamp-green" },
                   ].map((box) =>
                     visibleFields >= box.idx && (
                       <motion.div
@@ -191,7 +191,7 @@ export default function LandingPage() {
                         <div className={`absolute inset-0 border-2 border-${box.color} bg-${box.color}/15 rounded-sm`} />
                         {/* Label tag */}
                         <span
-                          className={`absolute -top-3.5 left-1 px-1 py-px text-[7px] font-mono font-bold uppercase tracking-wider bg-${box.color} text-white rounded-sm leading-tight whitespace-nowrap`}
+                          className={`absolute top-0 left-0 -translate-y-full px-1 py-px text-[7px] font-mono font-bold uppercase tracking-wider bg-${box.color} text-white rounded-sm leading-tight whitespace-nowrap`}
                         >
                           {box.label}
                         </span>
