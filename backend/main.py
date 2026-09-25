@@ -81,7 +81,16 @@ def get_config() -> dict:
     cfg_path = Path(__file__).parent.parent / "config" / "thresholds.yaml"
     if cfg_path.exists():
         with open(cfg_path, "r", encoding="utf-8") as f:
-            return yaml.safe_load(f) or {}
+            cfg = yaml.safe_load(f) or {}
+            
+            # Auto-override OCR provider based on deployment environment (e.g. Docker)
+            env_ocr = os.environ.get("OCR_PROVIDER")
+            if env_ocr:
+                if "ocr" not in cfg:
+                    cfg["ocr"] = {}
+                cfg["ocr"]["default_provider"] = env_ocr
+                
+            return cfg
     return {}
 
 
@@ -739,17 +748,17 @@ class ReportPdfRequest(BaseModel):
 def convert_html_with_gotenberg(html_content: str, gotenberg_base_url: str) -> bytes | None:
     import urllib.request
     import urllib.error
-    
+
     boundary = f"----CompliLensBoundary{uuid.uuid4().hex}"
     body = bytearray()
-    
+
     # Multipart file: index.html
     body.extend(f"--{boundary}\r\n".encode("utf-8"))
     body.extend(b'Content-Disposition: form-data; name="files"; filename="index.html"\r\n')
     body.extend(b'Content-Type: text/html; charset=utf-8\r\n\r\n')
     body.extend(html_content.encode("utf-8"))
     body.extend(b"\r\n")
-    
+
     # Chromium conversion options for Gotenberg 8
     options = {
         "paperWidth": "8.27",
@@ -765,9 +774,9 @@ def convert_html_with_gotenberg(html_content: str, gotenberg_base_url: str) -> b
         body.extend(f"--{boundary}\r\n".encode("utf-8"))
         body.extend(f'Content-Disposition: form-data; name="{k}"\r\n\r\n'.encode("utf-8"))
         body.extend(f"{v}\r\n".encode("utf-8"))
-        
+
     body.extend(f"--{boundary}--\r\n".encode("utf-8"))
-    
+
     url = f"{gotenberg_base_url.rstrip('/')}/forms/chromium/convert/html"
     req = urllib.request.Request(
         url,
@@ -813,9 +822,8 @@ def generate_pdf_report(payload: ReportPdfRequest):
             media_type="application/pdf",
             headers={"Content-Disposition": f'attachment; filename="{filename}"'}
         )
-    
+
     raise HTTPException(
         status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
         detail="Gotenberg PDF rendering service is not reachable. Use browser print fallback."
     )
-
