@@ -22,13 +22,13 @@ export const ComplianceReportView: React.FC<ComplianceReportViewProps> = ({
   const [showReport, setShowReport] = useState(false);
 
   // Mock Rules Mapping for Context
-  const rulesMap: Record<string, { description: string }> = {
-    "LMPC-001": { description: "Name and address of manufacturer or packer." },
-    "LMPC-002": { description: "Common or generic name of commodity." },
-    "LMPC-003": { description: "Net quantity in standard units." },
-    "LMPC-004": { description: "Month and year of manufacture or packaging." },
-    "LMPC-005": { description: "Retail sale price (MRP) inclusive of all taxes." },
-    "LMPC-006": { description: "Consumer care details (phone, email, address)." },
+  const rulesMap: Record<string, { description: string; source_citation: string }> = {
+    "LMPC-001": { description: "Name and address of manufacturer or packer.", source_citation: "Rule 6(1)(a)" },
+    "LMPC-002": { description: "Common or generic name of commodity.", source_citation: "Rule 6(1)(b)" },
+    "LMPC-003": { description: "Net quantity in standard units.", source_citation: "Rule 6(1)(c)" },
+    "LMPC-004": { description: "Month and year of manufacture or packaging.", source_citation: "Rule 6(1)(d)" },
+    "LMPC-005": { description: "Retail sale price (MRP) inclusive of all taxes.", source_citation: "Rule 6(1)(e)" },
+    "LMPC-006": { description: "Consumer care details (phone, email, address).", source_citation: "Rule 6(1)(g)" },
   };
 
   const isPass = verdict.overall_result === "PASS";
