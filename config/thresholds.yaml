@@ -1,7 +1,7 @@
 # CompliLens Thresholds and Engine Configuration
 
 ocr:
-  default_provider: "rapidocr"  # "rapidocr" (local CPU) or "gemini-vision" (free tier)
+  default_provider: "gemini-vision"  # "rapidocr" (local CPU) or "gemini-vision" (free tier)
   cer_threshold: 0.15
   wer_threshold: 0.20
 
