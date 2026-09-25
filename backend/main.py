@@ -166,24 +166,26 @@ def extract_declarations(
     api_key = os.environ.get("GEMINI_API_KEY")
 
     try:
-        fields_dict = run_perception_pipeline(
+        fields_dict, full_text = run_perception_pipeline(
             image_path=image_path,
             ocr_provider_name=chosen_ocr,
             api_key=api_key,
             crops_dir=CROPS_DIR,
             package_id=package_id,
+            return_text=True,
         )
     except Exception as exc:
         import traceback
         traceback.print_exc()
         if chosen_ocr != "rapidocr":
             # Ultimate safeguard: fall back to local OCR so user is never blocked
-            fields_dict = run_perception_pipeline(
+            fields_dict, full_text = run_perception_pipeline(
                 image_path=image_path,
                 ocr_provider_name="rapidocr",
                 api_key=api_key,
                 crops_dir=CROPS_DIR,
                 package_id=package_id,
+                return_text=True,
             )
         else:
             raise HTTPException(status_code=500, detail=f"Perception pipeline failed: {str(exc)}")
@@ -204,14 +206,8 @@ def extract_declarations(
     # Also extract non-statutory sections (ingredients, allergens, nutrition, claims)
     non_statutory = {}
     try:
-        from pipeline.ocr import LocalOcrProvider
-        from pipeline.field_classification import order_tokens_by_layout
         from pipeline.diff_llm import extract_non_statutory_with_llm
 
-        ocr_engine = LocalOcrProvider()
-        tokens = ocr_engine.extract_text(image_path)
-        ordered_tokens = order_tokens_by_layout(tokens)
-        full_text = "\n".join(t.text for t in ordered_tokens)
         non_statutory = extract_non_statutory_with_llm(full_text)
         if package_id in storage.packages:
             storage.packages[package_id]["non_statutory"] = non_statutory
@@ -463,9 +459,7 @@ async def batch_extract_labels(files: list[UploadFile] = File(...)):
         )
 
     results = []
-    from pipeline.ocr import LocalOcrProvider
     from pipeline.diff_llm import extract_non_statutory_with_llm
-    ocr_local = LocalOcrProvider()
 
     for file in files:
         pkg_id = f"pkg_{uuid.uuid4().hex[:10]}"
@@ -483,19 +477,19 @@ async def batch_extract_labels(files: list[UploadFile] = File(...)):
             image_filename=save_filename,
         )
 
-        # Run perception pipeline with CPU RapidOCR
-        fields = run_perception_pipeline(
+        cfg = get_config()
+        chosen_ocr = cfg.get("ocr", {}).get("default_provider", "rapidocr")
+        api_key = os.environ.get("GEMINI_API_KEY")
+
+        # Run perception pipeline with configured OCR
+        fields, full_text = run_perception_pipeline(
             image_path=dest_path,
-            ocr_provider_name="rapidocr",
+            ocr_provider_name=chosen_ocr,
+            api_key=api_key,
             crops_dir=CROPS_DIR,
             package_id=pkg_id,
+            return_text=True,
         )
-
-        # Reconstruct full OCR text from local tokens using layout-based ordering
-        local_tokens = ocr_local.extract_text(dest_path)
-        from pipeline.field_classification import order_tokens_by_layout
-        ordered_layout_tokens = order_tokens_by_layout(local_tokens)
-        full_text = "\n".join(t.text for t in ordered_layout_tokens)
 
         # Extract non-statutory sections with Gemini LLM (with regex fallback)
         non_statutory = extract_non_statutory_with_llm(full_text)

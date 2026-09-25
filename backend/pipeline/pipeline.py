@@ -46,7 +46,8 @@ def run_perception_pipeline(
     api_key: str | None = None,
     crops_dir: str | Path | None = None,
     package_id: str | None = None,
-) -> dict[str, ExtractedField]:
+    return_text: bool = False,
+):
     """
     Executes the complete Phase 2 perception pipeline:
     1. Preprocesses image (deskew, denoise, CLAHE contrast).
@@ -83,5 +84,11 @@ def run_perception_pipeline(
             crop_filename = f"{pkg_prefix}{fname}.jpg"
             crop_filepath = crops_p / crop_filename
             cv2.imwrite(str(crop_filepath), crop)
+
+    if return_text:
+        from pipeline.field_classification import order_tokens_by_layout
+        ordered_layout_tokens = order_tokens_by_layout(tokens)
+        full_text = "\n".join(t.text for t in ordered_layout_tokens)
+        return fields_dict, full_text
 
     return fields_dict
