@@ -47,14 +47,17 @@ def run_perception_pipeline(
     crops_dir: str | Path | None = None,
     package_id: str | None = None,
     return_text: bool = False,
+    fast_mode: bool = False,
 ):
     """
     Executes the complete Phase 2 perception pipeline:
     1. Preprocesses image (deskew, denoise, CLAHE contrast).
     2. Runs selected OCR provider (Local RapidOCR or Gemini Vision).
     3. Classifies tokens into the 6 target fields.
-    4. Computes additive suggestions without overwriting raw values.
+    4. Computes additive suggestions without overwriting raw values (skipped in fast_mode).
     5. Optionally saves cropped evidence snippets to crops_dir.
+
+    fast_mode=True skips dual-pass OCR and Gemini correction for batch processing speed.
     """
     img_path = Path(image_path)
     if not img_path.exists():
@@ -65,13 +68,22 @@ def run_perception_pipeline(
 
     # 2. OCR Token Extraction
     ocr_engine: OcrProvider = get_ocr_provider(ocr_provider_name, api_key=api_key)
-    tokens = ocr_engine.extract_text(preprocessed_img)
+    if fast_mode and hasattr(ocr_engine, 'extract_text'):
+        # Pass fast_mode to LocalOcrProvider to skip dual-pass
+        try:
+            tokens = ocr_engine.extract_text(preprocessed_img, fast_mode=True)
+        except TypeError:
+            # Provider doesn't support fast_mode kwarg (e.g. Gemini Vision)
+            tokens = ocr_engine.extract_text(preprocessed_img)
+    else:
+        tokens = ocr_engine.extract_text(preprocessed_img)
 
     # 3. Field Classification
     fields_dict = classify_tokens_to_fields(tokens, image_shape=preprocessed_img.shape[:2])
 
-    # 4. Additive Suggestions
-    fields_dict = suggest_field_corrections(fields_dict, api_key=api_key)
+    # 4. Additive Suggestions (skip in fast_mode — the LLM non-statutory call handles cleanup)
+    if not fast_mode:
+        fields_dict = suggest_field_corrections(fields_dict, api_key=api_key)
 
     # 5. Generate Evidence Crops
     if crops_dir is not None:

@@ -7281,6 +7281,4706 @@
           "Whole Grain"
         ]
       }
+    },
+    "pkg_f810769d36": {
+      "package": {
+        "package_id": "pkg_f810769d36",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_f810769d36.png",
+        "created_at": "2026-09-25 15:47:39.745974"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: \u20b965 (Inclusive of all taxes) per 100 g:",
+          "suggested_value": "MRP: \u20b965 (Inclusive of all taxes) per 100 g",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9418651055958537,
+          "bounding_box": [
+            1354,
+            118,
+            231,
+            162
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "Net Quantity: 160 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Net Quantity: 160 g",
+          "reviewer_action": null,
+          "confidence": 0.9196513679466749,
+          "bounding_box": [
+            1039,
+            118,
+            544,
+            66
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:09/2026",
+          "suggested_value": "Manufacturing Date: 09/2023",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9761984531696026,
+          "bounding_box": [
+            1061,
+            589,
+            322,
+            26
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email:care@nutribite.example",
+          "suggested_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9781430842060792,
+          "bounding_box": [
+            1060,
+            646,
+            311,
+            88
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9842241462455664,
+          "bounding_box": [
+            1060,
+            480,
+            484,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "GOLD CRUNCH DIGESTIVE BISCUITS",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9910969833532969,
+          "bounding_box": [
+            324,
+            279,
+            487,
+            190
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": {
+        "package_id": "pkg_f810769d36",
+        "category": "packaged_food",
+        "evaluations": [
+          {
+            "evaluation_id": "47302f94-949a-4d00-9d36-041cca61b7ba",
+            "field_name": "manufacturer_name_address",
+            "rule_id": "LMPC-6.1.a",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+            "confidence": 0.9842241462455664,
+            "evidence_crop_url": "",
+            "notes": "Valid manufacturer address structure detected"
+          },
+          {
+            "evaluation_id": "340c0e1e-0625-481e-b109-0eb8165e5235",
+            "field_name": "common_name",
+            "rule_id": "LMPC-6.1.b",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "GOLD CRUNCH DIGESTIVE BISCUITS",
+            "confidence": 0.9910969833532969,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'GOLD CRUNCH DIGESTIVE BISCUITS'"
+          },
+          {
+            "evaluation_id": "e62287c2-ed83-49de-85a9-45383a459f83",
+            "field_name": "net_quantity",
+            "rule_id": "LMPC-6.1.c",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Net Quantity: 160 g",
+            "confidence": 0.9196513679466749,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'Net Quantity: 160 g'"
+          },
+          {
+            "evaluation_id": "c770b7f4-b0f6-485f-a212-d87b4feb40fb",
+            "field_name": "mrp",
+            "rule_id": "LMPC-6.1.e",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "MRP: \u20b965 (Inclusive of all taxes)",
+            "confidence": 0.9418651055958537,
+            "evidence_crop_url": "",
+            "notes": "Valid MRP declaration with 'inclusive of all taxes'"
+          },
+          {
+            "evaluation_id": "12b9f48d-a26a-49cf-bc3a-edc7a3e407b4",
+            "field_name": "consumer_care",
+            "rule_id": "LMPC-6.2",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+            "confidence": 0.9781430842060792,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.ex...'"
+          }
+        ],
+        "overall_result": "PASS",
+        "exemption_applied": null,
+        "evaluated_at": "2026-09-25 15:53:12.131104"
+      },
+      "status": "EVALUATED",
+      "created_at": "2026-09-25T15:47:39.746679"
+    },
+    "pkg_e120d8c55f": {
+      "package": {
+        "package_id": "pkg_e120d8c55f",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_e120d8c55f.png",
+        "created_at": "2026-09-25 15:49:31.958226"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: 360 (Inclusive of all taxes)",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9352659123639266,
+          "bounding_box": [
+            1380,
+            118,
+            207,
+            83
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "160 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "160 g",
+          "reviewer_action": null,
+          "confidence": 0.9341961636725399,
+          "bounding_box": [
+            291,
+            118,
+            1296,
+            170
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:08/2026",
+          "suggested_value": "Manufacturing Date: 08/2026",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9707900560819186,
+          "bounding_box": [
+            1059,
+            591,
+            322,
+            27
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email: care@nutribite.example",
+          "suggested_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.990079426727323,
+          "bounding_box": [
+            1057,
+            645,
+            314,
+            89
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9766529425036441,
+          "bounding_box": [
+            1057,
+            482,
+            488,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "GOLD CRUNCH DIGESTIVE BISCUITS",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9925598171022203,
+          "bounding_box": [
+            323,
+            278,
+            489,
+            152
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": {
+        "package_id": "pkg_e120d8c55f",
+        "category": "packaged_food",
+        "evaluations": [
+          {
+            "evaluation_id": "73b3013e-506e-46fe-8ec0-eb0bbc3afbe8",
+            "field_name": "manufacturer_name_address",
+            "rule_id": "LMPC-6.1.a",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+            "confidence": 0.9766529425036441,
+            "evidence_crop_url": "",
+            "notes": "Valid manufacturer address structure detected"
+          },
+          {
+            "evaluation_id": "25474299-0322-482f-b545-36c40a8f53a3",
+            "field_name": "common_name",
+            "rule_id": "LMPC-6.1.b",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "GOLD CRUNCH DIGESTIVE BISCUITS",
+            "confidence": 0.9925598171022203,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'GOLD CRUNCH DIGESTIVE BISCUITS'"
+          },
+          {
+            "evaluation_id": "c446ad5e-2182-492d-ada7-653a40522b29",
+            "field_name": "net_quantity",
+            "rule_id": "LMPC-6.1.c",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "160 g",
+            "confidence": 0.9341961636725399,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: '160 g'"
+          },
+          {
+            "evaluation_id": "9f6a9d05-6b03-470b-ba85-98903b443bec",
+            "field_name": "mrp",
+            "rule_id": "LMPC-6.1.e",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "MRP: \u20b960 (Inclusive of all taxes)",
+            "confidence": 0.9352659123639266,
+            "evidence_crop_url": "",
+            "notes": "Valid MRP declaration with 'inclusive of all taxes'"
+          },
+          {
+            "evaluation_id": "eeae7228-c74e-4aa9-8358-9f570a4ccfe3",
+            "field_name": "consumer_care",
+            "rule_id": "LMPC-6.2",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+            "confidence": 0.990079426727323,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.ex...'"
+          }
+        ],
+        "overall_result": "PASS",
+        "exemption_applied": null,
+        "evaluated_at": "2026-09-25 15:53:12.251827"
+      },
+      "status": "EVALUATED",
+      "created_at": "2026-09-25T15:49:31.958226"
+    },
+    "pkg_f2ca287e00": {
+      "package": {
+        "package_id": "pkg_f2ca287e00",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_f2ca287e00.png",
+        "created_at": "2026-09-25 15:50:25.541653"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: \u20b960 (Inclusive of all taxes)",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9389243357711369,
+          "bounding_box": [
+            1388,
+            119,
+            198,
+            80
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "Net Quantity: 180 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Net Quantity: 180 g",
+          "reviewer_action": null,
+          "confidence": 0.9408981832321625,
+          "bounding_box": [
+            1039,
+            119,
+            546,
+            62
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:06/2026",
+          "suggested_value": "Manufacturing Date: 06/2026",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9743217780039861,
+          "bounding_box": [
+            1058,
+            589,
+            316,
+            26
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email: care@nutribite.example",
+          "suggested_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9770466097954201,
+          "bounding_box": [
+            1058,
+            644,
+            313,
+            90
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBiteFoodsPvt.Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": "Manufactured and Packed By: NutriBiteFoodsPvt.Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9934028957550112,
+          "bounding_box": [
+            1059,
+            481,
+            487,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "GOLD CRUNCH DIGESTIVE BISCUITS Classic Digestive Taste",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.991271479262246,
+          "bounding_box": [
+            325,
+            280,
+            490,
+            183
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": {
+        "package_id": "pkg_f2ca287e00",
+        "category": "packaged_food",
+        "evaluations": [
+          {
+            "evaluation_id": "a90df589-9f69-47c0-9d7e-11bdd058f11e",
+            "field_name": "manufacturer_name_address",
+            "rule_id": "LMPC-6.1.a",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+            "confidence": 0.9934028957550112,
+            "evidence_crop_url": "",
+            "notes": "Valid manufacturer address structure detected"
+          },
+          {
+            "evaluation_id": "c76732c5-a70b-4314-990b-dba2807b1df0",
+            "field_name": "common_name",
+            "rule_id": "LMPC-6.1.b",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "GOLD CRUNCH DIGESTIVE BISCUITS Classic Digestive Taste",
+            "confidence": 0.991271479262246,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'GOLD CRUNCH DIGESTIVE BISCUITS Classic Digestive Taste'"
+          },
+          {
+            "evaluation_id": "7b711820-1c2f-4d6e-8463-6d6be805b0d2",
+            "field_name": "net_quantity",
+            "rule_id": "LMPC-6.1.c",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Net Quantity: 180 g",
+            "confidence": 0.9408981832321625,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'Net Quantity: 180 g'"
+          },
+          {
+            "evaluation_id": "bac7279e-b8a8-4e58-8559-0713c8163e8b",
+            "field_name": "mrp",
+            "rule_id": "LMPC-6.1.e",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "MRP: \u20b960 (Inclusive of all taxes)",
+            "confidence": 0.9389243357711369,
+            "evidence_crop_url": "",
+            "notes": "Valid MRP declaration with 'inclusive of all taxes'"
+          },
+          {
+            "evaluation_id": "bb0cc456-cbf4-41ca-9b3e-2674236db03e",
+            "field_name": "consumer_care",
+            "rule_id": "LMPC-6.2",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+            "confidence": 0.9770466097954201,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.ex...'"
+          }
+        ],
+        "overall_result": "PASS",
+        "exemption_applied": null,
+        "evaluated_at": "2026-09-25 15:53:12.317099"
+      },
+      "status": "EVALUATED",
+      "created_at": "2026-09-25T15:50:25.541653"
+    },
+    "pkg_029710f6d9": {
+      "package": {
+        "package_id": "pkg_029710f6d9",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_029710f6d9.png",
+        "created_at": "2026-09-26 04:02:26.405656"
+      },
+      "fields": {},
+      "verdict": null,
+      "status": "UPLOADED",
+      "created_at": "2026-09-26T04:02:26.405775"
+    },
+    "pkg_048b024214": {
+      "package": {
+        "package_id": "pkg_048b024214",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_048b024214.png",
+        "created_at": "2026-09-26 04:03:12.791169"
+      },
+      "fields": {},
+      "verdict": null,
+      "status": "UPLOADED",
+      "created_at": "2026-09-26T04:03:12.791303"
+    },
+    "pkg_8e2b8b6f06": {
+      "package": {
+        "package_id": "pkg_8e2b8b6f06",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_8e2b8b6f06.png",
+        "created_at": "2026-09-26 04:03:26.164220"
+      },
+      "fields": {},
+      "verdict": null,
+      "status": "UPLOADED",
+      "created_at": "2026-09-26T04:03:26.165723"
+    },
+    "pkg_f0632b8b0d": {
+      "package": {
+        "package_id": "pkg_f0632b8b0d",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_f0632b8b0d.png",
+        "created_at": "2026-09-26 04:05:46.974588"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: 360 (Inclusive of all taxes)",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9293833101789157,
+          "bounding_box": [
+            1001,
+            237,
+            284,
+            107
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "Net Quantity: 180 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Net Quantity: 180 g",
+          "reviewer_action": null,
+          "confidence": 0.9724491242166848,
+          "bounding_box": [
+            283,
+            148,
+            1038,
+            133
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date: 08/2026",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9903753885516414,
+          "bounding_box": [
+            1021,
+            481,
+            356,
+            31
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9939004618252438,
+          "bounding_box": [
+            1026,
+            540,
+            346,
+            193
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan-302013",
+          "suggested_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan-302013",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan-302013",
+          "reviewer_action": null,
+          "confidence": 0.9865403641859689,
+          "bounding_box": [
+            1022,
+            387,
+            364,
+            278
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "GOLD CRUNCH Digestive Biscuits",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9830674793985155,
+          "bounding_box": [
+            271,
+            280,
+            555,
+            172
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": null,
+      "status": "EXTRACTED",
+      "created_at": "2026-09-26T04:05:46.990365"
+    },
+    "pkg_f440407705": {
+      "package": {
+        "package_id": "pkg_f440407705",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_f440407705.png",
+        "created_at": "2026-09-26 04:54:27.621381"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: \u20b965 (Inclusive of all taxes) per 100 g:",
+          "suggested_value": "MRP: \u20b965 (Inclusive of all taxes) per 100 g",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9418651055958537,
+          "bounding_box": [
+            1354,
+            118,
+            231,
+            162
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "Net Quantity: 160 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Net Quantity: 160 g",
+          "reviewer_action": null,
+          "confidence": 0.9196513679466749,
+          "bounding_box": [
+            1039,
+            118,
+            544,
+            66
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:09/2026",
+          "suggested_value": "Manufacturing Date: 09/2026",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9761984531696026,
+          "bounding_box": [
+            1061,
+            589,
+            322,
+            26
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email:care@nutribite.example",
+          "suggested_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9781430842060792,
+          "bounding_box": [
+            1060,
+            646,
+            311,
+            88
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9842241462455664,
+          "bounding_box": [
+            1060,
+            480,
+            484,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "GOLD CRUNCH DIGESTIVE BISCUITS",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9910969833532969,
+          "bounding_box": [
+            324,
+            279,
+            487,
+            190
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": null,
+      "status": "EXTRACTED",
+      "created_at": "2026-09-26T04:54:27.621381"
+    },
+    "pkg_4de20c2c61": {
+      "package": {
+        "package_id": "pkg_4de20c2c61",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_4de20c2c61.png",
+        "created_at": "2026-09-26 04:57:08.585716"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: 360 (Inclusive of all taxes)",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9352659123639266,
+          "bounding_box": [
+            1380,
+            118,
+            207,
+            83
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "160 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "160 g",
+          "reviewer_action": null,
+          "confidence": 0.9341961636725399,
+          "bounding_box": [
+            291,
+            118,
+            1296,
+            170
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:08/2026",
+          "suggested_value": "Manufacturing Date: 08/2026",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9707900560819186,
+          "bounding_box": [
+            1059,
+            591,
+            322,
+            27
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email: care@nutribite.example",
+          "suggested_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.990079426727323,
+          "bounding_box": [
+            1057,
+            645,
+            314,
+            89
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9766529425036441,
+          "bounding_box": [
+            1057,
+            482,
+            488,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "GOLD CRUNCH DIGESTIVE BISCUITS",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9925598171022203,
+          "bounding_box": [
+            323,
+            278,
+            489,
+            152
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": null,
+      "status": "EXTRACTED",
+      "created_at": "2026-09-26T04:57:08.585716"
+    },
+    "pkg_e0ec8194d6": {
+      "package": {
+        "package_id": "pkg_e0ec8194d6",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_e0ec8194d6.png",
+        "created_at": "2026-09-26 04:59:31.932696"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: \u20b960 (Inclusive of all taxes)",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9389243357711369,
+          "bounding_box": [
+            1388,
+            119,
+            198,
+            80
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "Net Quantity: 180 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Net Quantity: 180 g",
+          "reviewer_action": null,
+          "confidence": 0.9408981832321625,
+          "bounding_box": [
+            1039,
+            119,
+            546,
+            62
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:06/2026",
+          "suggested_value": "Manufacturing Date: 06/2026",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9743217780039861,
+          "bounding_box": [
+            1058,
+            589,
+            316,
+            26
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email: care@nutribite.example",
+          "suggested_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9770466097954201,
+          "bounding_box": [
+            1058,
+            644,
+            313,
+            90
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBiteFoodsPvt.Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": "Manufactured and Packed By: NutriBiteFoodsPvt.Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9934028957550112,
+          "bounding_box": [
+            1059,
+            481,
+            487,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "GOLD CRUNCH DIGESTIVE BISCUITS Classic Digestive Taste",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.991271479262246,
+          "bounding_box": [
+            325,
+            280,
+            490,
+            183
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": null,
+      "status": "EXTRACTED",
+      "created_at": "2026-09-26T04:59:31.932696"
+    },
+    "pkg_4587ec3796": {
+      "package": {
+        "package_id": "pkg_4587ec3796",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_4587ec3796.png",
+        "created_at": "2026-09-26 05:02:26.721584"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: \u20b965 (Inclusive of all taxes) per 100 g:",
+          "suggested_value": "MRP: \u20b965 (Inclusive of all taxes) per 100 g",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9418651055958537,
+          "bounding_box": [
+            1354,
+            118,
+            231,
+            162
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "Net Quantity: 160 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Net Quantity: 160 g",
+          "reviewer_action": null,
+          "confidence": 0.9196513679466749,
+          "bounding_box": [
+            1039,
+            118,
+            544,
+            66
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:09/2026",
+          "suggested_value": "Manufacturing Date: 09/2023",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9761984531696026,
+          "bounding_box": [
+            1061,
+            589,
+            322,
+            26
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email:care@nutribite.example",
+          "suggested_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9781430842060792,
+          "bounding_box": [
+            1060,
+            646,
+            311,
+            88
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9842241462455664,
+          "bounding_box": [
+            1060,
+            480,
+            484,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "GOLD CRUNCH DIGESTIVE BISCUITS",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9910969833532969,
+          "bounding_box": [
+            324,
+            279,
+            487,
+            190
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": {
+        "package_id": "pkg_4587ec3796",
+        "category": "packaged_food",
+        "evaluations": [
+          {
+            "evaluation_id": "d42dd98c-dddb-4a3a-977b-bd1050ffadd1",
+            "field_name": "manufacturer_name_address",
+            "rule_id": "LMPC-6.1.a",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+            "confidence": 0.9842241462455664,
+            "evidence_crop_url": "",
+            "notes": "Valid manufacturer address structure detected"
+          },
+          {
+            "evaluation_id": "adf17c01-f38a-4e1d-a653-da39883f58cf",
+            "field_name": "common_name",
+            "rule_id": "LMPC-6.1.b",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "GOLD CRUNCH DIGESTIVE BISCUITS",
+            "confidence": 0.9910969833532969,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'GOLD CRUNCH DIGESTIVE BISCUITS'"
+          },
+          {
+            "evaluation_id": "0ab3a868-f11d-49ae-a1f8-15388b0c04fe",
+            "field_name": "net_quantity",
+            "rule_id": "LMPC-6.1.c",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Net Quantity: 160 g",
+            "confidence": 0.9196513679466749,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'Net Quantity: 160 g'"
+          },
+          {
+            "evaluation_id": "9a86080f-6164-4495-a29a-9d108fcffcad",
+            "field_name": "mrp",
+            "rule_id": "LMPC-6.1.e",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "MRP: \u20b965 (Inclusive of all taxes)",
+            "confidence": 0.9418651055958537,
+            "evidence_crop_url": "",
+            "notes": "Valid MRP declaration with 'inclusive of all taxes'"
+          },
+          {
+            "evaluation_id": "4c68c510-94c7-4604-96ae-63e047fdc935",
+            "field_name": "consumer_care",
+            "rule_id": "LMPC-6.2",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+            "confidence": 0.9781430842060792,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.ex...'"
+          }
+        ],
+        "overall_result": "PASS",
+        "exemption_applied": null,
+        "evaluated_at": "2026-09-26 05:06:55.393977"
+      },
+      "status": "EVALUATED",
+      "created_at": "2026-09-26T05:02:26.721584"
+    },
+    "pkg_9591e2874b": {
+      "package": {
+        "package_id": "pkg_9591e2874b",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_9591e2874b.png",
+        "created_at": "2026-09-26 05:04:11.966166"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: \u20b960 (Inclusive of all taxes)",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9389243357711369,
+          "bounding_box": [
+            1388,
+            119,
+            198,
+            80
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "Net Quantity: 180 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Net Quantity: 180 g",
+          "reviewer_action": null,
+          "confidence": 0.9408981832321625,
+          "bounding_box": [
+            1039,
+            119,
+            546,
+            62
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:06/2026",
+          "suggested_value": "Manufacturing Date: 06/2026",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9743217780039861,
+          "bounding_box": [
+            1058,
+            589,
+            316,
+            26
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email: care@nutribite.example",
+          "suggested_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9770466097954201,
+          "bounding_box": [
+            1058,
+            644,
+            313,
+            90
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBiteFoodsPvt.Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": "Manufactured and Packed By: NutriBiteFoodsPvt.Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9934028957550112,
+          "bounding_box": [
+            1059,
+            481,
+            487,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "GOLD CRUNCH DIGESTIVE BISCUITS Classic Digestive Taste",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.991271479262246,
+          "bounding_box": [
+            325,
+            280,
+            490,
+            183
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": {
+        "package_id": "pkg_9591e2874b",
+        "category": "packaged_food",
+        "evaluations": [
+          {
+            "evaluation_id": "a8ed0bc7-7aca-4584-8eb6-907fd515f709",
+            "field_name": "manufacturer_name_address",
+            "rule_id": "LMPC-6.1.a",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Manufactured and Packed By: NutriBite Food sPvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+            "confidence": 0.9934028957550112,
+            "evidence_crop_url": "",
+            "notes": "Valid manufacturer address structure detected"
+          },
+          {
+            "evaluation_id": "af838a70-f9ef-4594-83f4-97c96a466f81",
+            "field_name": "common_name",
+            "rule_id": "LMPC-6.1.b",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "GOLD CRUNCH DIGESTIVE BISCUITS Classic Digestive Taste",
+            "confidence": 0.991271479262246,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'GOLD CRUNCH DIGESTIVE BISCUITS Classic Digestive Taste'"
+          },
+          {
+            "evaluation_id": "6b7e6f8c-0b7a-46a1-b235-2abfedf8f67d",
+            "field_name": "net_quantity",
+            "rule_id": "LMPC-6.1.c",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Net Quantity: 180 g",
+            "confidence": 0.9408981832321625,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'Net Quantity: 180 g'"
+          },
+          {
+            "evaluation_id": "46f77d11-67dc-4f42-b80c-3f8fbc40f2c0",
+            "field_name": "mrp",
+            "rule_id": "LMPC-6.1.e",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "MRP: \u20b960 (Inclusive of all taxes)",
+            "confidence": 0.9389243357711369,
+            "evidence_crop_url": "",
+            "notes": "Valid MRP declaration with 'inclusive of all taxes'"
+          },
+          {
+            "evaluation_id": "d9b4d269-5c23-443d-955e-507418486789",
+            "field_name": "consumer_care",
+            "rule_id": "LMPC-6.2",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+            "confidence": 0.9770466097954201,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.ex...'"
+          }
+        ],
+        "overall_result": "PASS",
+        "exemption_applied": null,
+        "evaluated_at": "2026-09-26 05:06:58.243611"
+      },
+      "status": "EVALUATED",
+      "created_at": "2026-09-26T05:04:11.966166"
+    },
+    "pkg_a4f3101da0": {
+      "package": {
+        "package_id": "pkg_a4f3101da0",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_a4f3101da0.png",
+        "created_at": "2026-09-27 05:38:32.083885"
+      },
+      "fields": {},
+      "verdict": null,
+      "status": "UPLOADED",
+      "created_at": "2026-09-27T05:38:32.083948"
+    },
+    "pkg_8b08eaaf68": {
+      "package": {
+        "package_id": "pkg_8b08eaaf68",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_8b08eaaf68.png",
+        "created_at": "2026-09-27 05:39:11.189930"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: 360 (Inclusive of all taxes)",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "MRP: 360 (Inclusive of all taxes)",
+          "reviewer_action": "accepted_raw",
+          "confidence": 0.9293833101789157,
+          "bounding_box": [
+            1001,
+            237,
+            284,
+            107
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "Net Quantity: 180 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Net Quantity: 180 g",
+          "reviewer_action": "accepted_raw",
+          "confidence": 0.9724491242166848,
+          "bounding_box": [
+            283,
+            148,
+            1038,
+            133
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date: 08/2026",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Manufacturing Date: 08/2026",
+          "reviewer_action": "accepted_raw",
+          "confidence": 0.9903753885516414,
+          "bounding_box": [
+            1021,
+            481,
+            356,
+            31
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+          "reviewer_action": "accepted_raw",
+          "confidence": 0.9939004618252438,
+          "bounding_box": [
+            1026,
+            540,
+            346,
+            193
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan-302013",
+          "suggested_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan-302013",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan-302013",
+          "reviewer_action": "accepted_suggestion",
+          "confidence": 0.9865403641859689,
+          "bounding_box": [
+            1022,
+            387,
+            364,
+            278
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "GOLD CRUNCH Digestive Biscuits",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "GOLD CRUNCH Digestive Biscuits",
+          "reviewer_action": "accepted_raw",
+          "confidence": 0.9830674793985155,
+          "bounding_box": [
+            271,
+            280,
+            555,
+            172
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": {
+        "package_id": "pkg_8b08eaaf68",
+        "category": "packaged_food",
+        "evaluations": [
+          {
+            "evaluation_id": "e2f8abbb-7e9c-4168-bd74-1cf1bd126f9d",
+            "field_name": "manufacturer_name_address",
+            "rule_id": "LMPC-6.1.a",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan-302013",
+            "confidence": 0.9865403641859689,
+            "evidence_crop_url": "/static/crops/pkg_8b08eaaf68_manufacturer_name_address.jpg",
+            "notes": "Valid manufacturer address structure detected"
+          },
+          {
+            "evaluation_id": "bd6d42b4-0a19-42ef-bd52-6877aed2f979",
+            "field_name": "common_name",
+            "rule_id": "LMPC-6.1.b",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "GOLD CRUNCH Digestive Biscuits",
+            "confidence": 0.9830674793985155,
+            "evidence_crop_url": "/static/crops/pkg_8b08eaaf68_common_name.jpg",
+            "notes": "Declaration present: 'GOLD CRUNCH Digestive Biscuits'"
+          },
+          {
+            "evaluation_id": "26e88e39-66a0-4745-9042-9ad99b9940c6",
+            "field_name": "net_quantity",
+            "rule_id": "LMPC-6.1.c",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Net Quantity: 180 g",
+            "confidence": 0.9724491242166848,
+            "evidence_crop_url": "/static/crops/pkg_8b08eaaf68_net_quantity.jpg",
+            "notes": "Declaration present: 'Net Quantity: 180 g'"
+          },
+          {
+            "evaluation_id": "a9e7013f-5c99-48ad-9e3b-aa36b90867ac",
+            "field_name": "mrp",
+            "rule_id": "LMPC-6.1.e",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "MRP: 360 (Inclusive of all taxes)",
+            "confidence": 0.9293833101789157,
+            "evidence_crop_url": "/static/crops/pkg_8b08eaaf68_mrp.jpg",
+            "notes": "Valid MRP declaration with 'inclusive of all taxes'"
+          },
+          {
+            "evaluation_id": "3ab9cb7c-32ef-4b1d-a714-129a3b124378",
+            "field_name": "consumer_care",
+            "rule_id": "LMPC-6.2",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+            "confidence": 0.9939004618252438,
+            "evidence_crop_url": "/static/crops/pkg_8b08eaaf68_consumer_care.jpg",
+            "notes": "Declaration present: 'Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.ex...'"
+          }
+        ],
+        "overall_result": "PASS",
+        "exemption_applied": null,
+        "evaluated_at": "2026-09-27 05:40:00.642661"
+      },
+      "status": "EVALUATED",
+      "created_at": "2026-09-27T05:39:11.189930",
+      "non_statutory": {
+        "net_quantity": "Net Quantity: 180 g",
+        "common_name": "Digestive Biscuits",
+        "manufacturer_name_address": "NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan-302013",
+        "ingredients_text": "",
+        "ingredients_list": [],
+        "allergens": [],
+        "nutrition_table": {},
+        "marketing_claims": [
+          "Rich in Fibre",
+          "Made with Whole Grains",
+          "Source of Energy",
+          "No Artificial Colours",
+          "Whole Grain"
+        ]
+      }
+    },
+    "pkg_897f3309d6": {
+      "package": {
+        "package_id": "pkg_897f3309d6",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_897f3309d6.png",
+        "created_at": "2026-09-27 05:40:57.944560"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: \u20b965 (Inclusive of all taxes) per 100 g:",
+          "suggested_value": "MRP: \u20b965 (Inclusive of all taxes) per 100 g",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9418651055958537,
+          "bounding_box": [
+            1354,
+            118,
+            231,
+            162
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "Net Quantity: 160 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Net Quantity: 160 g",
+          "reviewer_action": null,
+          "confidence": 0.9196513679466749,
+          "bounding_box": [
+            1039,
+            118,
+            544,
+            66
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:09/2026",
+          "suggested_value": "Manufacturing Date: 09/2026",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9761984531696026,
+          "bounding_box": [
+            1061,
+            589,
+            322,
+            26
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email:care@nutribite.example",
+          "suggested_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9781430842060792,
+          "bounding_box": [
+            1060,
+            646,
+            311,
+            88
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9842241462455664,
+          "bounding_box": [
+            1060,
+            480,
+            484,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "GOLD CRUNCH DIGESTIVE BISCUITS",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9910969833532969,
+          "bounding_box": [
+            324,
+            279,
+            487,
+            190
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": {
+        "package_id": "pkg_897f3309d6",
+        "category": "packaged_food",
+        "evaluations": [
+          {
+            "evaluation_id": "eebc1681-10bd-4545-b6ce-d1c04dfb117e",
+            "field_name": "manufacturer_name_address",
+            "rule_id": "LMPC-6.1.a",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+            "confidence": 0.9842241462455664,
+            "evidence_crop_url": "",
+            "notes": "Valid manufacturer address structure detected"
+          },
+          {
+            "evaluation_id": "2167a47e-ef2d-4737-bb8c-e46ffb65528a",
+            "field_name": "common_name",
+            "rule_id": "LMPC-6.1.b",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "GOLD CRUNCH DIGESTIVE BISCUITS",
+            "confidence": 0.9910969833532969,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'GOLD CRUNCH DIGESTIVE BISCUITS'"
+          },
+          {
+            "evaluation_id": "5d5868b1-4cf0-4075-b644-77846028f357",
+            "field_name": "net_quantity",
+            "rule_id": "LMPC-6.1.c",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Net Quantity: 160 g",
+            "confidence": 0.9196513679466749,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'Net Quantity: 160 g'"
+          },
+          {
+            "evaluation_id": "574a80a4-de20-4cec-8f00-3933cf947b6b",
+            "field_name": "mrp",
+            "rule_id": "LMPC-6.1.e",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "MRP: \u20b965 (Inclusive of all taxes)",
+            "confidence": 0.9418651055958537,
+            "evidence_crop_url": "",
+            "notes": "Valid MRP declaration with 'inclusive of all taxes'"
+          },
+          {
+            "evaluation_id": "a01e8481-918f-484e-ac8f-9f61d576ec9e",
+            "field_name": "consumer_care",
+            "rule_id": "LMPC-6.2",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+            "confidence": 0.9781430842060792,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.ex...'"
+          }
+        ],
+        "overall_result": "PASS",
+        "exemption_applied": null,
+        "evaluated_at": "2026-09-27 05:44:52.526634"
+      },
+      "status": "EVALUATED",
+      "created_at": "2026-09-27T05:40:57.944560"
+    },
+    "pkg_9629af487d": {
+      "package": {
+        "package_id": "pkg_9629af487d",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_9629af487d.png",
+        "created_at": "2026-09-27 05:41:43.427530"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: 360 (Inclusive of all taxes)",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9352659123639266,
+          "bounding_box": [
+            1380,
+            118,
+            207,
+            83
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "160 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "160 g",
+          "reviewer_action": null,
+          "confidence": 0.9341961636725399,
+          "bounding_box": [
+            291,
+            118,
+            1296,
+            170
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:08/2026",
+          "suggested_value": "Manufacturing Date: 08/2026",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9707900560819186,
+          "bounding_box": [
+            1059,
+            591,
+            322,
+            27
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email: care@nutribite.example",
+          "suggested_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.990079426727323,
+          "bounding_box": [
+            1057,
+            645,
+            314,
+            89
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9766529425036441,
+          "bounding_box": [
+            1057,
+            482,
+            488,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "GOLD CRUNCH DIGESTIVE BISCUITS",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9925598171022203,
+          "bounding_box": [
+            323,
+            278,
+            489,
+            152
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": {
+        "package_id": "pkg_9629af487d",
+        "category": "packaged_food",
+        "evaluations": [
+          {
+            "evaluation_id": "0d31aebf-9a0d-48b9-9807-018f4122f006",
+            "field_name": "manufacturer_name_address",
+            "rule_id": "LMPC-6.1.a",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+            "confidence": 0.9766529425036441,
+            "evidence_crop_url": "",
+            "notes": "Valid manufacturer address structure detected"
+          },
+          {
+            "evaluation_id": "28bb238a-34e9-491b-a3fa-3140e45c4fc0",
+            "field_name": "common_name",
+            "rule_id": "LMPC-6.1.b",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "GOLD CRUNCH DIGESTIVE BISCUITS",
+            "confidence": 0.9925598171022203,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'GOLD CRUNCH DIGESTIVE BISCUITS'"
+          },
+          {
+            "evaluation_id": "96876f3a-c52b-4537-b435-eaf170c8cc15",
+            "field_name": "net_quantity",
+            "rule_id": "LMPC-6.1.c",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "160 g",
+            "confidence": 0.9341961636725399,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: '160 g'"
+          },
+          {
+            "evaluation_id": "18ff251d-e4ec-4ecb-9f22-f2d2e271ca10",
+            "field_name": "mrp",
+            "rule_id": "LMPC-6.1.e",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "MRP: \u20b960 (Inclusive of all taxes)",
+            "confidence": 0.9352659123639266,
+            "evidence_crop_url": "",
+            "notes": "Valid MRP declaration with 'inclusive of all taxes'"
+          },
+          {
+            "evaluation_id": "70544f7a-3714-4394-8a85-a5dbe83e4ecf",
+            "field_name": "consumer_care",
+            "rule_id": "LMPC-6.2",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+            "confidence": 0.990079426727323,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.ex...'"
+          }
+        ],
+        "overall_result": "PASS",
+        "exemption_applied": null,
+        "evaluated_at": "2026-09-27 05:44:52.607697"
+      },
+      "status": "EVALUATED",
+      "created_at": "2026-09-27T05:41:43.427530"
+    },
+    "pkg_edff2edc33": {
+      "package": {
+        "package_id": "pkg_edff2edc33",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_edff2edc33.png",
+        "created_at": "2026-09-27 05:42:06.506895"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: \u20b960 (Inclusive of all taxes)",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9389243357711369,
+          "bounding_box": [
+            1388,
+            119,
+            198,
+            80
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "Net Quantity: 180 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Net Quantity: 180 g",
+          "reviewer_action": null,
+          "confidence": 0.9408981832321625,
+          "bounding_box": [
+            1039,
+            119,
+            546,
+            62
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:06/2026",
+          "suggested_value": "Manufacturing Date: 06/2026",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9743217780039861,
+          "bounding_box": [
+            1058,
+            589,
+            316,
+            26
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email: care@nutribite.example",
+          "suggested_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9770466097954201,
+          "bounding_box": [
+            1058,
+            644,
+            313,
+            90
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBiteFoodsPvt.Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": "Manufactured and Packed By: NutriBiteFoodsPvt.Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9934028957550112,
+          "bounding_box": [
+            1059,
+            481,
+            487,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "GOLD CRUNCH DIGESTIVE BISCUITS Classic Digestive Taste",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.991271479262246,
+          "bounding_box": [
+            325,
+            280,
+            490,
+            183
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": {
+        "package_id": "pkg_edff2edc33",
+        "category": "packaged_food",
+        "evaluations": [
+          {
+            "evaluation_id": "4635990b-6bdd-4365-8a80-1812fbb93415",
+            "field_name": "manufacturer_name_address",
+            "rule_id": "LMPC-6.1.a",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+            "confidence": 0.9934028957550112,
+            "evidence_crop_url": "",
+            "notes": "Valid manufacturer address structure detected"
+          },
+          {
+            "evaluation_id": "c586bf73-f36b-48ca-8cbf-954f6a7a249f",
+            "field_name": "common_name",
+            "rule_id": "LMPC-6.1.b",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "GOLD CRUNCH DIGESTIVE BISCUITS Classic Digestive Taste",
+            "confidence": 0.991271479262246,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'GOLD CRUNCH DIGESTIVE BISCUITS Classic Digestive Taste'"
+          },
+          {
+            "evaluation_id": "6eedac7b-bd79-485a-87ff-95cb68397aa8",
+            "field_name": "net_quantity",
+            "rule_id": "LMPC-6.1.c",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Net Quantity: 180 g",
+            "confidence": 0.9408981832321625,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'Net Quantity: 180 g'"
+          },
+          {
+            "evaluation_id": "2a8ddf5f-92f9-4541-928f-74879afa6d5c",
+            "field_name": "mrp",
+            "rule_id": "LMPC-6.1.e",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "MRP: \u20b960 (Inclusive of all taxes)",
+            "confidence": 0.9389243357711369,
+            "evidence_crop_url": "",
+            "notes": "Valid MRP declaration with 'inclusive of all taxes'"
+          },
+          {
+            "evaluation_id": "fa899587-4771-43f2-ae6a-02d0b8adacdd",
+            "field_name": "consumer_care",
+            "rule_id": "LMPC-6.2",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+            "confidence": 0.9770466097954201,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.ex...'"
+          }
+        ],
+        "overall_result": "PASS",
+        "exemption_applied": null,
+        "evaluated_at": "2026-09-27 05:44:52.673308"
+      },
+      "status": "EVALUATED",
+      "created_at": "2026-09-27T05:42:06.506895"
+    },
+    "pkg_64ee3fd452": {
+      "package": {
+        "package_id": "pkg_64ee3fd452",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_64ee3fd452.png",
+        "created_at": "2026-09-27 05:46:51.145393"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: \u20b965 (Inclusive of all taxes) per 100 g:",
+          "suggested_value": "MRP: \u20b965 (Inclusive of all taxes) per 100 g",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9418651055958537,
+          "bounding_box": [
+            1354,
+            118,
+            231,
+            162
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "Net Quantity: 160 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Net Quantity: 160 g",
+          "reviewer_action": null,
+          "confidence": 0.9196513679466749,
+          "bounding_box": [
+            1039,
+            118,
+            544,
+            66
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:09/2026",
+          "suggested_value": "Manufacturing Date: 09/2026",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9761984531696026,
+          "bounding_box": [
+            1061,
+            589,
+            322,
+            26
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email:care@nutribite.example",
+          "suggested_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9781430842060792,
+          "bounding_box": [
+            1060,
+            646,
+            311,
+            88
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9842241462455664,
+          "bounding_box": [
+            1060,
+            480,
+            484,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "GOLD CRUNCH DIGESTIVE BISCUITS",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9910969833532969,
+          "bounding_box": [
+            324,
+            279,
+            487,
+            190
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": null,
+      "status": "EXTRACTED",
+      "created_at": "2026-09-27T05:46:51.145393"
+    },
+    "pkg_aec5e9b9ab": {
+      "package": {
+        "package_id": "pkg_aec5e9b9ab",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_aec5e9b9ab.png",
+        "created_at": "2026-09-27 05:47:32.630163"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: 360 (Inclusive of all taxes)",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9352659123639266,
+          "bounding_box": [
+            1380,
+            118,
+            207,
+            83
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "160 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "160 g",
+          "reviewer_action": null,
+          "confidence": 0.9341961636725399,
+          "bounding_box": [
+            291,
+            118,
+            1296,
+            170
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:08/2026",
+          "suggested_value": "Manufacturing Date: 08/2026",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9707900560819186,
+          "bounding_box": [
+            1059,
+            591,
+            322,
+            27
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email: care@nutribite.example",
+          "suggested_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.990079426727323,
+          "bounding_box": [
+            1057,
+            645,
+            314,
+            89
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9766529425036441,
+          "bounding_box": [
+            1057,
+            482,
+            488,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "GOLD CRUNCH DIGESTIVE BISCUITS",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9925598171022203,
+          "bounding_box": [
+            323,
+            278,
+            489,
+            152
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": null,
+      "status": "EXTRACTED",
+      "created_at": "2026-09-27T05:47:32.630163"
+    },
+    "pkg_c534452a33": {
+      "package": {
+        "package_id": "pkg_c534452a33",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_c534452a33.png",
+        "created_at": "2026-09-27 05:47:55.576839"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: \u20b960 (Inclusive of all taxes)",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9389243357711369,
+          "bounding_box": [
+            1388,
+            119,
+            198,
+            80
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "Net Quantity: 180 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Net Quantity: 180 g",
+          "reviewer_action": null,
+          "confidence": 0.9408981832321625,
+          "bounding_box": [
+            1039,
+            119,
+            546,
+            62
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:06/2026",
+          "suggested_value": "Manufacturing Date: 06/2026",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9743217780039861,
+          "bounding_box": [
+            1058,
+            589,
+            316,
+            26
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email: care@nutribite.example",
+          "suggested_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9770466097954201,
+          "bounding_box": [
+            1058,
+            644,
+            313,
+            90
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBiteFoodsPvt.Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": "Manufactured and Packed By: NutriBiteFoodsPvt.Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9934028957550112,
+          "bounding_box": [
+            1059,
+            481,
+            487,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "GOLD CRUNCH DIGESTIVE BISCUITS Classic Digestive Taste",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.991271479262246,
+          "bounding_box": [
+            325,
+            280,
+            490,
+            183
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": null,
+      "status": "EXTRACTED",
+      "created_at": "2026-09-27T05:47:55.576839"
+    },
+    "pkg_83c8ed0797": {
+      "package": {
+        "package_id": "pkg_83c8ed0797",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_83c8ed0797.png",
+        "created_at": "2026-09-27 05:54:59.244195"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: \u20b965 (Inclusive of all taxes) per 100 g:",
+          "suggested_value": "MRP: \u20b965 (Inclusive of all taxes) per 100 g",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9418651055958537,
+          "bounding_box": [
+            1354,
+            118,
+            231,
+            162
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "Net Quantity: 160 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Net Quantity: 160 g",
+          "reviewer_action": null,
+          "confidence": 0.9196513679466749,
+          "bounding_box": [
+            1039,
+            118,
+            544,
+            66
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:09/2026",
+          "suggested_value": "Manufacturing Date: 09/2026",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9761984531696026,
+          "bounding_box": [
+            1061,
+            589,
+            322,
+            26
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email:care@nutribite.example",
+          "suggested_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9781430842060792,
+          "bounding_box": [
+            1060,
+            646,
+            311,
+            88
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9842241462455664,
+          "bounding_box": [
+            1060,
+            480,
+            484,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "GOLD CRUNCH DIGESTIVE BISCUITS",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9910969833532969,
+          "bounding_box": [
+            324,
+            279,
+            487,
+            190
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": null,
+      "status": "EXTRACTED",
+      "created_at": "2026-09-27T05:54:59.244195"
+    },
+    "pkg_6fde4698dc": {
+      "package": {
+        "package_id": "pkg_6fde4698dc",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_6fde4698dc.png",
+        "created_at": "2026-09-27 05:54:59.266650"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: 360 (Inclusive of all taxes)",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9352659123639266,
+          "bounding_box": [
+            1380,
+            118,
+            207,
+            83
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "160 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "160 g",
+          "reviewer_action": null,
+          "confidence": 0.9341961636725399,
+          "bounding_box": [
+            291,
+            118,
+            1296,
+            170
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:08/2026",
+          "suggested_value": "Manufacturing Date: 08/2026",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9707900560819186,
+          "bounding_box": [
+            1059,
+            591,
+            322,
+            27
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email: care@nutribite.example",
+          "suggested_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.990079426727323,
+          "bounding_box": [
+            1057,
+            645,
+            314,
+            89
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9766529425036441,
+          "bounding_box": [
+            1057,
+            482,
+            488,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "GOLD CRUNCH DIGESTIVE BISCUITS",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9925598171022203,
+          "bounding_box": [
+            323,
+            278,
+            489,
+            152
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": null,
+      "status": "EXTRACTED",
+      "created_at": "2026-09-27T05:54:59.266650"
+    },
+    "pkg_42c830758d": {
+      "package": {
+        "package_id": "pkg_42c830758d",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_42c830758d.png",
+        "created_at": "2026-09-27 05:54:59.296714"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: \u20b960 (Inclusive of all taxes)",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9389243357711369,
+          "bounding_box": [
+            1388,
+            119,
+            198,
+            80
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "Net Quantity: 180 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Net Quantity: 180 g",
+          "reviewer_action": null,
+          "confidence": 0.9408981832321625,
+          "bounding_box": [
+            1039,
+            119,
+            546,
+            62
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:06/2026",
+          "suggested_value": "Manufacturing Date: 06/2026",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9743217780039861,
+          "bounding_box": [
+            1058,
+            589,
+            316,
+            26
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email: care@nutribite.example",
+          "suggested_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9770466097954201,
+          "bounding_box": [
+            1058,
+            644,
+            313,
+            90
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBiteFoodsPvt.Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": "Manufactured and Packed By: NutriBiteFoodsPvt.Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9934028957550112,
+          "bounding_box": [
+            1059,
+            481,
+            487,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "GOLD CRUNCH DIGESTIVE BISCUITS Classic Digestive Taste",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.991271479262246,
+          "bounding_box": [
+            325,
+            280,
+            490,
+            183
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": null,
+      "status": "EXTRACTED",
+      "created_at": "2026-09-27T05:54:59.296714"
+    },
+    "pkg_498e95dbce": {
+      "package": {
+        "package_id": "pkg_498e95dbce",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_498e95dbce.png",
+        "created_at": "2026-09-27 05:56:58.883515"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: \u20b965 (Inclusive of all taxes) per 100 g:",
+          "suggested_value": "MRP: \u20b965 (Inclusive of all taxes) per 100 g",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9418651055958537,
+          "bounding_box": [
+            1354,
+            118,
+            231,
+            162
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "Net Quantity: 160 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Net Quantity: 160 g",
+          "reviewer_action": null,
+          "confidence": 0.9196513679466749,
+          "bounding_box": [
+            1039,
+            118,
+            544,
+            66
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:09/2026",
+          "suggested_value": "Manufacturing Date: 09/2026",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9761984531696026,
+          "bounding_box": [
+            1061,
+            589,
+            322,
+            26
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email:care@nutribite.example",
+          "suggested_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9781430842060792,
+          "bounding_box": [
+            1060,
+            646,
+            311,
+            88
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9842241462455664,
+          "bounding_box": [
+            1060,
+            480,
+            484,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "GOLD CRUNCH DIGESTIVE BISCUITS",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9910969833532969,
+          "bounding_box": [
+            324,
+            279,
+            487,
+            190
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": null,
+      "status": "EXTRACTED",
+      "created_at": "2026-09-27T05:56:58.883515"
+    },
+    "pkg_074f61cb56": {
+      "package": {
+        "package_id": "pkg_074f61cb56",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_074f61cb56.png",
+        "created_at": "2026-09-27 05:56:58.909318"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: 360 (Inclusive of all taxes)",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9352659123639266,
+          "bounding_box": [
+            1380,
+            118,
+            207,
+            83
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "160 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "160 g",
+          "reviewer_action": null,
+          "confidence": 0.9341961636725399,
+          "bounding_box": [
+            291,
+            118,
+            1296,
+            170
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:08/2026",
+          "suggested_value": "Manufacturing Date: 08/2026",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9707900560819186,
+          "bounding_box": [
+            1059,
+            591,
+            322,
+            27
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email: care@nutribite.example",
+          "suggested_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.990079426727323,
+          "bounding_box": [
+            1057,
+            645,
+            314,
+            89
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9766529425036441,
+          "bounding_box": [
+            1057,
+            482,
+            488,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "GOLD CRUNCH DIGESTIVE BISCUITS",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9925598171022203,
+          "bounding_box": [
+            323,
+            278,
+            489,
+            152
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": null,
+      "status": "EXTRACTED",
+      "created_at": "2026-09-27T05:56:58.909318"
+    },
+    "pkg_0d4053aa85": {
+      "package": {
+        "package_id": "pkg_0d4053aa85",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_0d4053aa85.png",
+        "created_at": "2026-09-27 05:56:58.928710"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: \u20b960 (Inclusive of all taxes)",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9389243357711369,
+          "bounding_box": [
+            1388,
+            119,
+            198,
+            80
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "Net Quantity: 180 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Net Quantity: 180 g",
+          "reviewer_action": null,
+          "confidence": 0.9408981832321625,
+          "bounding_box": [
+            1039,
+            119,
+            546,
+            62
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:06/2026",
+          "suggested_value": "Manufacturing Date: 06/2026",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9743217780039861,
+          "bounding_box": [
+            1058,
+            589,
+            316,
+            26
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email: care@nutribite.example",
+          "suggested_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9770466097954201,
+          "bounding_box": [
+            1058,
+            644,
+            313,
+            90
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBiteFoodsPvt.Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": "Manufactured and Packed By: NutriBiteFoodsPvt.Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9934028957550112,
+          "bounding_box": [
+            1059,
+            481,
+            487,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "GOLD CRUNCH DIGESTIVE BISCUITS Classic Digestive Taste",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.991271479262246,
+          "bounding_box": [
+            325,
+            280,
+            490,
+            183
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": null,
+      "status": "EXTRACTED",
+      "created_at": "2026-09-27T05:56:58.928710"
+    },
+    "pkg_9163564833": {
+      "package": {
+        "package_id": "pkg_9163564833",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_9163564833.png",
+        "created_at": "2026-09-27 06:06:03.339612"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: \u20b965 (Inclusive of all taxes) per 100 g:",
+          "suggested_value": "MRP: \u20b965 (Inclusive of all taxes) per 100 g",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9418651055958537,
+          "bounding_box": [
+            1354,
+            118,
+            231,
+            162
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "Net Quantity: 160 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Net Quantity: 160 g",
+          "reviewer_action": null,
+          "confidence": 0.9196513679466749,
+          "bounding_box": [
+            1039,
+            118,
+            544,
+            66
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:09/2026",
+          "suggested_value": "Manufacturing Date: 09/2026",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9761984531696026,
+          "bounding_box": [
+            1061,
+            589,
+            322,
+            26
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email:care@nutribite.example",
+          "suggested_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9781430842060792,
+          "bounding_box": [
+            1060,
+            646,
+            311,
+            88
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9842241462455664,
+          "bounding_box": [
+            1060,
+            480,
+            484,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "GOLD CRUNCH DIGESTIVE BISCUITS",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9910969833532969,
+          "bounding_box": [
+            324,
+            279,
+            487,
+            190
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": {
+        "package_id": "pkg_9163564833",
+        "category": "packaged_food",
+        "evaluations": [
+          {
+            "evaluation_id": "7d553a68-268d-46d1-991c-a106c8d24a9b",
+            "field_name": "manufacturer_name_address",
+            "rule_id": "LMPC-6.1.a",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+            "confidence": 0.9842241462455664,
+            "evidence_crop_url": "",
+            "notes": "Valid manufacturer address structure detected"
+          },
+          {
+            "evaluation_id": "fcf842cb-95cb-4d36-b45c-977b948d183a",
+            "field_name": "common_name",
+            "rule_id": "LMPC-6.1.b",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "GOLD CRUNCH DIGESTIVE BISCUITS",
+            "confidence": 0.9910969833532969,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'GOLD CRUNCH DIGESTIVE BISCUITS'"
+          },
+          {
+            "evaluation_id": "c3ab8aba-a02e-4928-bc85-eb4b0f13bc44",
+            "field_name": "net_quantity",
+            "rule_id": "LMPC-6.1.c",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Net Quantity: 160 g",
+            "confidence": 0.9196513679466749,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'Net Quantity: 160 g'"
+          },
+          {
+            "evaluation_id": "a6b19705-0c5f-485a-ba72-5cd1916d984e",
+            "field_name": "mrp",
+            "rule_id": "LMPC-6.1.e",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "MRP: \u20b965 (Inclusive of all taxes)",
+            "confidence": 0.9418651055958537,
+            "evidence_crop_url": "",
+            "notes": "Valid MRP declaration with 'inclusive of all taxes'"
+          },
+          {
+            "evaluation_id": "07c8e352-4fb0-4c80-8c51-09295c5a4282",
+            "field_name": "consumer_care",
+            "rule_id": "LMPC-6.2",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+            "confidence": 0.9781430842060792,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.ex...'"
+          }
+        ],
+        "overall_result": "PASS",
+        "exemption_applied": null,
+        "evaluated_at": "2026-09-27 06:08:56.332009"
+      },
+      "status": "EVALUATED",
+      "created_at": "2026-09-27T06:06:03.339612"
+    },
+    "pkg_aba7e6a24d": {
+      "package": {
+        "package_id": "pkg_aba7e6a24d",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_aba7e6a24d.png",
+        "created_at": "2026-09-27 06:06:03.364629"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: 360 (Inclusive of all taxes)",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9352659123639266,
+          "bounding_box": [
+            1380,
+            118,
+            207,
+            83
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "160 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "160 g",
+          "reviewer_action": null,
+          "confidence": 0.9341961636725399,
+          "bounding_box": [
+            291,
+            118,
+            1296,
+            170
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:08/2026",
+          "suggested_value": "Manufacturing Date: 08/2026",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9707900560819186,
+          "bounding_box": [
+            1059,
+            591,
+            322,
+            27
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email: care@nutribite.example",
+          "suggested_value": "Consumer Care: Phone: 1800-123-4567, Email: care@nutribite.example",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.990079426727323,
+          "bounding_box": [
+            1057,
+            645,
+            314,
+            89
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9766529425036441,
+          "bounding_box": [
+            1057,
+            482,
+            488,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "GOLD CRUNCH DIGESTIVE BISCUITS",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9925598171022203,
+          "bounding_box": [
+            323,
+            278,
+            489,
+            152
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": {
+        "package_id": "pkg_aba7e6a24d",
+        "category": "packaged_food",
+        "evaluations": [
+          {
+            "evaluation_id": "42be205d-1659-4722-9195-79b23bcd5524",
+            "field_name": "manufacturer_name_address",
+            "rule_id": "LMPC-6.1.a",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+            "confidence": 0.9766529425036441,
+            "evidence_crop_url": "",
+            "notes": "Valid manufacturer address structure detected"
+          },
+          {
+            "evaluation_id": "ccc0e4ea-196f-4c3c-9788-5cc1ce440d96",
+            "field_name": "common_name",
+            "rule_id": "LMPC-6.1.b",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "GOLD CRUNCH DIGESTIVE BISCUITS",
+            "confidence": 0.9925598171022203,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'GOLD CRUNCH DIGESTIVE BISCUITS'"
+          },
+          {
+            "evaluation_id": "b3f41dc9-0ec2-4be5-b3c8-8efc1fd7430a",
+            "field_name": "net_quantity",
+            "rule_id": "LMPC-6.1.c",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "160 g",
+            "confidence": 0.9341961636725399,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: '160 g'"
+          },
+          {
+            "evaluation_id": "8a2fe1aa-a6dd-4e74-aedd-749224a5ec80",
+            "field_name": "mrp",
+            "rule_id": "LMPC-6.1.e",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "MRP: \u20b960 (Inclusive of all taxes)",
+            "confidence": 0.9352659123639266,
+            "evidence_crop_url": "",
+            "notes": "Valid MRP declaration with 'inclusive of all taxes'"
+          },
+          {
+            "evaluation_id": "b7fb0372-b109-49e0-a67c-35bda90b3c6e",
+            "field_name": "consumer_care",
+            "rule_id": "LMPC-6.2",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+            "confidence": 0.990079426727323,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.ex...'"
+          }
+        ],
+        "overall_result": "PASS",
+        "exemption_applied": null,
+        "evaluated_at": "2026-09-27 06:08:56.439859"
+      },
+      "status": "EVALUATED",
+      "created_at": "2026-09-27T06:06:03.364629"
+    },
+    "pkg_86d9ae18a5": {
+      "package": {
+        "package_id": "pkg_86d9ae18a5",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_86d9ae18a5.png",
+        "created_at": "2026-09-27 06:06:03.389719"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: \u20b960 (Inclusive of all taxes)",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9389243357711369,
+          "bounding_box": [
+            1388,
+            119,
+            198,
+            80
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "Net Quantity: 180 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Net Quantity: 180 g",
+          "reviewer_action": null,
+          "confidence": 0.9408981832321625,
+          "bounding_box": [
+            1039,
+            119,
+            546,
+            62
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:06/2026",
+          "suggested_value": "Manufacturing Date: 06/2026",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9743217780039861,
+          "bounding_box": [
+            1058,
+            589,
+            316,
+            26
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email: care@nutribite.example",
+          "suggested_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9770466097954201,
+          "bounding_box": [
+            1058,
+            644,
+            313,
+            90
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBiteFoodsPvt.Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": "Manufactured and Packed By: NutriBiteFoodsPvt.Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9934028957550112,
+          "bounding_box": [
+            1059,
+            481,
+            487,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "GOLD CRUNCH DIGESTIVE BISCUITS Classic Digestive Taste",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.991271479262246,
+          "bounding_box": [
+            325,
+            280,
+            490,
+            183
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": {
+        "package_id": "pkg_86d9ae18a5",
+        "category": "packaged_food",
+        "evaluations": [
+          {
+            "evaluation_id": "a74cb3ee-8354-44eb-94be-d9a02f6e9ede",
+            "field_name": "manufacturer_name_address",
+            "rule_id": "LMPC-6.1.a",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+            "confidence": 0.9934028957550112,
+            "evidence_crop_url": "",
+            "notes": "Valid manufacturer address structure detected"
+          },
+          {
+            "evaluation_id": "8f9100d8-9688-4468-b26e-3df30dd5cffe",
+            "field_name": "common_name",
+            "rule_id": "LMPC-6.1.b",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "GOLD CRUNCH DIGESTIVE BISCUITS Classic Digestive Taste",
+            "confidence": 0.991271479262246,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'GOLD CRUNCH DIGESTIVE BISCUITS Classic Digestive Taste'"
+          },
+          {
+            "evaluation_id": "79f0df50-94ec-4d54-a2d2-adf8af3c3575",
+            "field_name": "net_quantity",
+            "rule_id": "LMPC-6.1.c",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Net Quantity: 180 g",
+            "confidence": 0.9408981832321625,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'Net Quantity: 180 g'"
+          },
+          {
+            "evaluation_id": "e6d1b705-b047-4fc1-b648-def74f19401f",
+            "field_name": "mrp",
+            "rule_id": "LMPC-6.1.e",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "MRP: \u20b960 (Inclusive of all taxes)",
+            "confidence": 0.9389243357711369,
+            "evidence_crop_url": "",
+            "notes": "Valid MRP declaration with 'inclusive of all taxes'"
+          },
+          {
+            "evaluation_id": "5fb7bfda-e2b4-483e-b00c-c17ad6f87780",
+            "field_name": "consumer_care",
+            "rule_id": "LMPC-6.2",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+            "confidence": 0.9770466097954201,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.ex...'"
+          }
+        ],
+        "overall_result": "PASS",
+        "exemption_applied": null,
+        "evaluated_at": "2026-09-27 06:08:56.506103"
+      },
+      "status": "EVALUATED",
+      "created_at": "2026-09-27T06:06:03.389719"
+    },
+    "pkg_74f8d8ae68": {
+      "package": {
+        "package_id": "pkg_74f8d8ae68",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_74f8d8ae68.png",
+        "created_at": "2026-09-27 06:15:07.923486"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: \u20b965 (Inclusive of all taxes) per 100 g:",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9418651055958537,
+          "bounding_box": [
+            1354,
+            118,
+            231,
+            162
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "Net Quantity: 160 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Net Quantity: 160 g",
+          "reviewer_action": null,
+          "confidence": 0.9196513679466749,
+          "bounding_box": [
+            1039,
+            118,
+            544,
+            66
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:09/2026",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9761984531696026,
+          "bounding_box": [
+            1061,
+            589,
+            322,
+            26
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email:care@nutribite.example",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9781430842060792,
+          "bounding_box": [
+            1060,
+            646,
+            311,
+            88
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9842241462455664,
+          "bounding_box": [
+            1060,
+            480,
+            484,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "DIGESTIVE BISCUITS",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9910969833532969,
+          "bounding_box": [
+            329,
+            376,
+            482,
+            93
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": {
+        "package_id": "pkg_74f8d8ae68",
+        "category": "packaged_food",
+        "evaluations": [
+          {
+            "evaluation_id": "7600d990-c3ee-4df1-8ca4-d36dd2af9871",
+            "field_name": "manufacturer_name_address",
+            "rule_id": "LMPC-6.1.a",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+            "confidence": 0.9842241462455664,
+            "evidence_crop_url": "",
+            "notes": "Valid manufacturer address structure detected"
+          },
+          {
+            "evaluation_id": "4343466a-876c-4a1e-a008-8e8f8758720e",
+            "field_name": "common_name",
+            "rule_id": "LMPC-6.1.b",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "DIGESTIVE BISCUITS",
+            "confidence": 0.9910969833532969,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'DIGESTIVE BISCUITS'"
+          },
+          {
+            "evaluation_id": "997dedf3-90da-453d-ad8e-786acb4ffb61",
+            "field_name": "net_quantity",
+            "rule_id": "LMPC-6.1.c",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Net Quantity: 160 g",
+            "confidence": 0.9196513679466749,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'Net Quantity: 160 g'"
+          },
+          {
+            "evaluation_id": "4bc6e167-e408-49f1-bed2-159a49e7a3eb",
+            "field_name": "mrp",
+            "rule_id": "LMPC-6.1.e",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "MRP: \u20b965 (Inclusive of all taxes)",
+            "confidence": 0.9418651055958537,
+            "evidence_crop_url": "",
+            "notes": "Valid MRP declaration with 'inclusive of all taxes'"
+          },
+          {
+            "evaluation_id": "32b7d657-398f-45ab-beb2-2fa26787aad9",
+            "field_name": "consumer_care",
+            "rule_id": "LMPC-6.2",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+            "confidence": 0.9781430842060792,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.ex...'"
+          }
+        ],
+        "overall_result": "PASS",
+        "exemption_applied": null,
+        "evaluated_at": "2026-09-27 06:17:16.821292"
+      },
+      "status": "EVALUATED",
+      "created_at": "2026-09-27T06:15:07.923486"
+    },
+    "pkg_4ebc4c2195": {
+      "package": {
+        "package_id": "pkg_4ebc4c2195",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_4ebc4c2195.png",
+        "created_at": "2026-09-27 06:15:07.950820"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: 360 (Inclusive of all taxes)",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9352659123639266,
+          "bounding_box": [
+            1380,
+            118,
+            207,
+            83
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "160 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "160 g",
+          "reviewer_action": null,
+          "confidence": 0.9341961636725399,
+          "bounding_box": [
+            291,
+            118,
+            1296,
+            170
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:08/2026",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9707900560819186,
+          "bounding_box": [
+            1059,
+            591,
+            322,
+            27
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email: care@nutribite.example",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.990079426727323,
+          "bounding_box": [
+            1057,
+            645,
+            314,
+            89
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9766529425036441,
+          "bounding_box": [
+            1057,
+            482,
+            488,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "DIGESTIVE BISCUITS",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9925598171022203,
+          "bounding_box": [
+            329,
+            375,
+            483,
+            55
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": {
+        "package_id": "pkg_4ebc4c2195",
+        "category": "packaged_food",
+        "evaluations": [
+          {
+            "evaluation_id": "57b098f7-ec4f-46e6-8f45-50f8639b6cce",
+            "field_name": "manufacturer_name_address",
+            "rule_id": "LMPC-6.1.a",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+            "confidence": 0.9766529425036441,
+            "evidence_crop_url": "",
+            "notes": "Valid manufacturer address structure detected"
+          },
+          {
+            "evaluation_id": "6e3981bc-e5e2-4f62-aaf3-6e21728b6071",
+            "field_name": "common_name",
+            "rule_id": "LMPC-6.1.b",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "DIGESTIVE BISCUITS",
+            "confidence": 0.9925598171022203,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'DIGESTIVE BISCUITS'"
+          },
+          {
+            "evaluation_id": "2ab0b4f3-445a-4b4e-b432-9b5bedd58b67",
+            "field_name": "net_quantity",
+            "rule_id": "LMPC-6.1.c",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "160 g",
+            "confidence": 0.9341961636725399,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: '160 g'"
+          },
+          {
+            "evaluation_id": "19465381-5fd4-4676-b48c-7a97dff65b1c",
+            "field_name": "mrp",
+            "rule_id": "LMPC-6.1.e",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "MRP: \u20b960 (Inclusive of all taxes)",
+            "confidence": 0.9352659123639266,
+            "evidence_crop_url": "",
+            "notes": "Valid MRP declaration with 'inclusive of all taxes'"
+          },
+          {
+            "evaluation_id": "b3fc7325-7b25-439b-a473-8f09df6e31a4",
+            "field_name": "consumer_care",
+            "rule_id": "LMPC-6.2",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+            "confidence": 0.990079426727323,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.ex...'"
+          }
+        ],
+        "overall_result": "PASS",
+        "exemption_applied": null,
+        "evaluated_at": "2026-09-27 06:17:16.938225"
+      },
+      "status": "EVALUATED",
+      "created_at": "2026-09-27T06:15:07.950820"
+    },
+    "pkg_1a3e662c54": {
+      "package": {
+        "package_id": "pkg_1a3e662c54",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_1a3e662c54.png",
+        "created_at": "2026-09-27 06:15:07.981230"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: \u20b960 (Inclusive of all taxes)",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9389243357711369,
+          "bounding_box": [
+            1388,
+            119,
+            198,
+            80
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "Net Quantity: 180 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Net Quantity: 180 g",
+          "reviewer_action": null,
+          "confidence": 0.9408981832321625,
+          "bounding_box": [
+            1039,
+            119,
+            546,
+            62
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:06/2026",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9743217780039861,
+          "bounding_box": [
+            1058,
+            589,
+            316,
+            26
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email: care@nutribite.example",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9770466097954201,
+          "bounding_box": [
+            1058,
+            644,
+            313,
+            90
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBiteFoodsPvt.Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Manufactured and Packed By: NutriBiteFoodsPvt.Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9934028957550112,
+          "bounding_box": [
+            1059,
+            481,
+            487,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "DIGESTIVE BISCUITS Classic Digestive Taste",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.991271479262246,
+          "bounding_box": [
+            334,
+            375,
+            481,
+            88
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": {
+        "package_id": "pkg_1a3e662c54",
+        "category": "packaged_food",
+        "evaluations": [
+          {
+            "evaluation_id": "482f5fb5-6916-40c9-a95f-47a6eaf9c921",
+            "field_name": "manufacturer_name_address",
+            "rule_id": "LMPC-6.1.a",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+            "confidence": 0.9934028957550112,
+            "evidence_crop_url": "",
+            "notes": "Valid manufacturer address structure detected"
+          },
+          {
+            "evaluation_id": "33209e3a-9410-485c-9f97-bf11209aa39b",
+            "field_name": "common_name",
+            "rule_id": "LMPC-6.1.b",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "DIGESTIVE BISCUITS",
+            "confidence": 0.991271479262246,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'DIGESTIVE BISCUITS'"
+          },
+          {
+            "evaluation_id": "3a2e369c-15b7-4576-a4dd-8bca14bfb604",
+            "field_name": "net_quantity",
+            "rule_id": "LMPC-6.1.c",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Net Quantity: 180 g",
+            "confidence": 0.9408981832321625,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'Net Quantity: 180 g'"
+          },
+          {
+            "evaluation_id": "e6d809e0-cc00-4245-8fcc-9793db00176b",
+            "field_name": "mrp",
+            "rule_id": "LMPC-6.1.e",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "MRP: \u20b960 (Inclusive of all taxes)",
+            "confidence": 0.9389243357711369,
+            "evidence_crop_url": "",
+            "notes": "Valid MRP declaration with 'inclusive of all taxes'"
+          },
+          {
+            "evaluation_id": "381c200a-e820-45b8-97b9-ed57df633c38",
+            "field_name": "consumer_care",
+            "rule_id": "LMPC-6.2",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+            "confidence": 0.9770466097954201,
+            "evidence_crop_url": "",
+            "notes": "Declaration present: 'Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.ex...'"
+          }
+        ],
+        "overall_result": "PASS",
+        "exemption_applied": null,
+        "evaluated_at": "2026-09-27 06:17:16.998316"
+      },
+      "status": "EVALUATED",
+      "created_at": "2026-09-27T06:15:07.981230"
+    },
+    "pkg_2c2fe9a622": {
+      "package": {
+        "package_id": "pkg_2c2fe9a622",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_2c2fe9a622.png",
+        "created_at": "2026-09-27 06:23:10.722652"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: \u20b965 (Inclusive of all taxes) per 100 g:",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9418651055958537,
+          "bounding_box": [
+            1354,
+            118,
+            231,
+            162
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "Net Quantity: 160 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Net Quantity: 160 g",
+          "reviewer_action": null,
+          "confidence": 0.9196513679466749,
+          "bounding_box": [
+            1039,
+            118,
+            544,
+            66
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:09/2026",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9761984531696026,
+          "bounding_box": [
+            1061,
+            589,
+            322,
+            26
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email:care@nutribite.example",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9781430842060792,
+          "bounding_box": [
+            1060,
+            646,
+            311,
+            88
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9842241462455664,
+          "bounding_box": [
+            1060,
+            480,
+            484,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "DIGESTIVE BISCUITS",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9910969833532969,
+          "bounding_box": [
+            329,
+            376,
+            482,
+            93
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": null,
+      "status": "EXTRACTED",
+      "created_at": "2026-09-27T06:23:10.722652"
+    },
+    "pkg_06cb4ed237": {
+      "package": {
+        "package_id": "pkg_06cb4ed237",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_06cb4ed237.png",
+        "created_at": "2026-09-27 06:23:10.752256"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: 360 (Inclusive of all taxes)",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9352659123639266,
+          "bounding_box": [
+            1380,
+            118,
+            207,
+            83
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "160 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "160 g",
+          "reviewer_action": null,
+          "confidence": 0.9341961636725399,
+          "bounding_box": [
+            291,
+            118,
+            1296,
+            170
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:08/2026",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9707900560819186,
+          "bounding_box": [
+            1059,
+            591,
+            322,
+            27
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email: care@nutribite.example",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.990079426727323,
+          "bounding_box": [
+            1057,
+            645,
+            314,
+            89
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9766529425036441,
+          "bounding_box": [
+            1057,
+            482,
+            488,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "DIGESTIVE BISCUITS",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9925598171022203,
+          "bounding_box": [
+            329,
+            375,
+            483,
+            55
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": null,
+      "status": "EXTRACTED",
+      "created_at": "2026-09-27T06:23:10.752256"
+    },
+    "pkg_6ea7f6ecca": {
+      "package": {
+        "package_id": "pkg_6ea7f6ecca",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_6ea7f6ecca.png",
+        "created_at": "2026-09-27 06:23:10.782888"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: \u20b960 (Inclusive of all taxes)",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9389243357711369,
+          "bounding_box": [
+            1388,
+            119,
+            198,
+            80
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "Net Quantity: 180 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Net Quantity: 180 g",
+          "reviewer_action": null,
+          "confidence": 0.9408981832321625,
+          "bounding_box": [
+            1039,
+            119,
+            546,
+            62
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:06/2026",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9743217780039861,
+          "bounding_box": [
+            1058,
+            589,
+            316,
+            26
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email: care@nutribite.example",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.9770466097954201,
+          "bounding_box": [
+            1058,
+            644,
+            313,
+            90
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBiteFoodsPvt.Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Manufactured and Packed By: NutriBiteFoodsPvt.Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": null,
+          "confidence": 0.9934028957550112,
+          "bounding_box": [
+            1059,
+            481,
+            487,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "DIGESTIVE BISCUITS Classic Digestive Taste",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": null,
+          "reviewer_action": null,
+          "confidence": 0.991271479262246,
+          "bounding_box": [
+            334,
+            375,
+            481,
+            88
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": null,
+      "status": "EXTRACTED",
+      "created_at": "2026-09-27T06:23:10.782888"
+    },
+    "pkg_cacc7220b5": {
+      "package": {
+        "package_id": "pkg_cacc7220b5",
+        "category": "packaged_food",
+        "declared_net_quantity": null,
+        "declared_net_quantity_unit": null,
+        "package_capacity_cc": null,
+        "image_filename": "pkg_cacc7220b5.png",
+        "created_at": "2026-09-27 06:23:57.152496"
+      },
+      "fields": {
+        "mrp": {
+          "field_name": "mrp",
+          "raw_value": "MRP: 360 (Inclusive of all taxes)",
+          "suggested_value": "MRP: \u20b9360 (Inclusive of all taxes)",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": "MRP: \u20b960 (Inclusive of all taxes)",
+          "reviewer_action": "manual_edit",
+          "confidence": 0.9352659123639266,
+          "bounding_box": [
+            1380,
+            118,
+            207,
+            83
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "net_quantity": {
+          "field_name": "net_quantity",
+          "raw_value": "160 g",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "160 g",
+          "reviewer_action": "accepted_raw",
+          "confidence": 0.9341961636725399,
+          "bounding_box": [
+            291,
+            118,
+            1296,
+            170
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "mfg_month_year": {
+          "field_name": "mfg_month_year",
+          "raw_value": "Manufacturing Date:08/2026",
+          "suggested_value": "Manufacturing Date: 08/2026",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": "Manufacturing Date: 08/2026",
+          "reviewer_action": "accepted_suggestion",
+          "confidence": 0.9707900560819186,
+          "bounding_box": [
+            1059,
+            591,
+            322,
+            27
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "consumer_care": {
+          "field_name": "consumer_care",
+          "raw_value": "Consumer Care: Phone:1800-123-4567 Email: care@nutribite.example",
+          "suggested_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+          "suggestion_source": "gemini-flash",
+          "confirmed_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+          "reviewer_action": "accepted_suggestion",
+          "confidence": 0.990079426727323,
+          "bounding_box": [
+            1057,
+            645,
+            314,
+            89
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "manufacturer_name_address": {
+          "field_name": "manufacturer_name_address",
+          "raw_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+          "reviewer_action": "accepted_raw",
+          "confidence": 0.9766529425036441,
+          "bounding_box": [
+            1057,
+            482,
+            488,
+            94
+          ],
+          "ocr_source": "rapidocr"
+        },
+        "common_name": {
+          "field_name": "common_name",
+          "raw_value": "GOLD CRUNCH DIGESTIVE BISCUITS",
+          "suggested_value": null,
+          "suggestion_source": null,
+          "confirmed_value": "GOLD CRUNCH DIGESTIVE BISCUITS",
+          "reviewer_action": "accepted_raw",
+          "confidence": 0.9925598171022203,
+          "bounding_box": [
+            323,
+            278,
+            489,
+            152
+          ],
+          "ocr_source": "rapidocr"
+        }
+      },
+      "verdict": {
+        "package_id": "pkg_cacc7220b5",
+        "category": "packaged_food",
+        "evaluations": [
+          {
+            "evaluation_id": "bd71fdd1-a016-4291-b4ad-cb594ed1ade8",
+            "field_name": "manufacturer_name_address",
+            "rule_id": "LMPC-6.1.a",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Manufactured and Packed By: NutriBite Foods Pvt. Ltd., 45 Industrial Area, Jaipur, Rajasthan - 302013",
+            "confidence": 0.9766529425036441,
+            "evidence_crop_url": "/static/crops/pkg_cacc7220b5_manufacturer_name_address.jpg",
+            "notes": "Valid manufacturer address structure detected"
+          },
+          {
+            "evaluation_id": "2231d25b-7970-45de-80b3-5601ebdb9331",
+            "field_name": "common_name",
+            "rule_id": "LMPC-6.1.b",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "GOLD CRUNCH DIGESTIVE BISCUITS",
+            "confidence": 0.9925598171022203,
+            "evidence_crop_url": "/static/crops/pkg_cacc7220b5_common_name.jpg",
+            "notes": "Declaration present: 'GOLD CRUNCH DIGESTIVE BISCUITS'"
+          },
+          {
+            "evaluation_id": "797eaa4d-d5c5-4bc8-b566-e14ad880470e",
+            "field_name": "net_quantity",
+            "rule_id": "LMPC-6.1.c",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "160 g",
+            "confidence": 0.9341961636725399,
+            "evidence_crop_url": "/static/crops/pkg_cacc7220b5_net_quantity.jpg",
+            "notes": "Declaration present: '160 g'"
+          },
+          {
+            "evaluation_id": "2dd51d64-afb5-44a1-88a2-792666cc3112",
+            "field_name": "mrp",
+            "rule_id": "LMPC-6.1.e",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "MRP: \u20b960 (Inclusive of all taxes)",
+            "confidence": 0.9352659123639266,
+            "evidence_crop_url": "/static/crops/pkg_cacc7220b5_mrp.jpg",
+            "notes": "Valid MRP declaration with 'inclusive of all taxes'"
+          },
+          {
+            "evaluation_id": "155acd47-dc8c-4c4d-91fc-32dbea1834ad",
+            "field_name": "consumer_care",
+            "rule_id": "LMPC-6.2",
+            "rule_version": 1,
+            "result": "PASS",
+            "extracted_value": "Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.example",
+            "confidence": 0.990079426727323,
+            "evidence_crop_url": "/static/crops/pkg_cacc7220b5_consumer_care.jpg",
+            "notes": "Declaration present: 'Consumer Care: Phone: 1800-123-4567 Email: care@nutribite.ex...'"
+          }
+        ],
+        "overall_result": "PASS",
+        "exemption_applied": null,
+        "evaluated_at": "2026-09-27 06:25:07.882427"
+      },
+      "status": "EVALUATED",
+      "created_at": "2026-09-27T06:23:57.152496",
+      "non_statutory": {
+        "ingredients_text": "Wheat Flour,Sugar,Edible Vegetable Oil,OatFlour, Milk Solids, Salt,Raising Agents",
+        "ingredients_list": [
+          "Wheat Flour",
+          "Sugar",
+          "Edible Vegetable Oil",
+          "OatFlour",
+          "Milk Solids",
+          "Salt",
+          "Raising Agents"
+        ],
+        "allergens": [
+          "Wheat",
+          "Milk"
+        ],
+        "nutrition_table": {
+          "Energy": "475kcal",
+          "Protein": "8g",
+          "Carbohydrate": "19g",
+          "Total Sugars": "17g",
+          "Total Fat": "19g",
+          "Dietary Fibre": "7g"
+        },
+        "marketing_claims": [
+          "Rich in Fibre",
+          "Made with Whole Grains",
+          "Source of Energy",
+          "No Artificial Colours",
+          "High Fibre",
+          "Whole Grain"
+        ]
+      }
     }
   },
   "review_queue": {},

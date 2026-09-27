@@ -481,7 +481,7 @@ async def batch_extract_labels(files: list[UploadFile] = File(...)):
         chosen_ocr = cfg.get("ocr", {}).get("default_provider", "rapidocr")
         api_key = os.environ.get("GEMINI_API_KEY")
 
-        # Run perception pipeline with configured OCR in a separate thread
+        # Run perception pipeline with configured OCR in a separate thread (fast_mode skips dual-pass + correction)
         fields, full_text = await asyncio.to_thread(
             run_perception_pipeline,
             dest_path,
@@ -489,7 +489,8 @@ async def batch_extract_labels(files: list[UploadFile] = File(...)):
             api_key,
             CROPS_DIR,
             pkg_id,
-            True
+            True,   # return_text
+            True,   # fast_mode — skip dual-pass OCR & Gemini correction for speed
         )
 
         # Extract non-statutory sections with Gemini LLM in a separate thread

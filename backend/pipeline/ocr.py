@@ -64,19 +64,30 @@ class OcrProvider(ABC):
         pass
 
 
+# Module-level singleton: load the heavy ONNX model once, reuse for all requests
+_rapidocr_engine = None
+
+def _get_rapidocr_engine():
+    global _rapidocr_engine
+    if _rapidocr_engine is None:
+        try:
+            from rapidocr_onnxruntime import RapidOCR
+            _rapidocr_engine = RapidOCR()
+        except ImportError:
+            pass
+    return _rapidocr_engine
+
+
 class LocalOcrProvider(OcrProvider):
     """
     Local CPU-based OCR provider using RapidOCR with dual-pass dot-matrix enhancement.
     Pass 1: Standard contrast-normalized image.
     Pass 2: Dot-matrix enhanced image to connect disconnected inkjet dots (for MRP/Date/Batch).
+    Supports fast_mode to skip the dual-pass for batch processing.
     """
 
     def __init__(self):
-        try:
-            from rapidocr_onnxruntime import RapidOCR
-            self._engine = RapidOCR()
-        except ImportError:
-            self._engine = None
+        self._engine = _get_rapidocr_engine()
 
     @property
     def provider_name(self) -> str:
@@ -115,7 +126,7 @@ class LocalOcrProvider(OcrProvider):
             )
         return tokens
 
-    def extract_text(self, image_input: str | Path | np.ndarray) -> list[OcrToken]:
+    def extract_text(self, image_input: str | Path | np.ndarray, fast_mode: bool = False) -> list[OcrToken]:
         if isinstance(image_input, (str, Path)):
             img = cv2.imread(str(image_input))
             if img is None:
@@ -126,19 +137,20 @@ class LocalOcrProvider(OcrProvider):
         # Pass 1: Standard OCR
         primary_tokens = self._run_single_pass(img)
 
-        # Pass 2: Dot-matrix enhanced pass (connects inkjet dots for MRP, Expiry, Batch)
-        dot_enhanced_img = enhance_dot_matrix_text(img)
-        dot_tokens = self._run_single_pass(dot_enhanced_img)
+        # Pass 2: Dot-matrix enhanced pass (skip in fast_mode for batch processing)
+        if not fast_mode:
+            dot_enhanced_img = enhance_dot_matrix_text(img)
+            dot_tokens = self._run_single_pass(dot_enhanced_img)
 
-        # Merge non-redundant tokens from Pass 2 into primary tokens
-        for d_tok in dot_tokens:
-            is_redundant = False
-            for p_tok in primary_tokens:
-                if compute_box_iou(d_tok.bbox, p_tok.bbox) > 0.4:
-                    is_redundant = True
-                    break
-            if not is_redundant:
-                primary_tokens.append(d_tok)
+            # Merge non-redundant tokens from Pass 2 into primary tokens
+            for d_tok in dot_tokens:
+                is_redundant = False
+                for p_tok in primary_tokens:
+                    if compute_box_iou(d_tok.bbox, p_tok.bbox) > 0.4:
+                        is_redundant = True
+                        break
+                if not is_redundant:
+                    primary_tokens.append(d_tok)
 
         return primary_tokens
 

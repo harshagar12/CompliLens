@@ -89,8 +89,8 @@ export default function LandingPage() {
               className="text-sm text-ink-light mt-5 leading-relaxed max-w-md mx-auto lg:mx-0"
             >
               Upload a packaging label, extract every statutory declaration
-              via OCR, and verify compliance against the Legal Metrology
-              (Packaged Commodities) Rules — in seconds.
+              via OCR and verify compliance against the Legal Metrology
+              (Packaged Commodities) Rules, 2011 - in seconds.
             </motion.p>
 
             <motion.div
