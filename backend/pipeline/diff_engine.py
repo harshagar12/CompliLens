@@ -43,22 +43,29 @@ def parse_numeric_price(price_str: str | None) -> float | None:
 def parse_revision_date(date_str: str | None) -> tuple[int, int]:
     """Parses MM/YYYY, YY, or MON YYYY from mfg/packing date string into (year, month) for chronological sorting."""
     if not date_str:
+        print(f"[SORT DEBUG] Empty date string, returning (9999, 99)")
         return (9999, 99)
     
     date_str = date_str.upper()
-    # Match MM/YYYY or MM-YYYY
-    m = re.search(r"\b(0?[1-9]|1[0-2])[\/\-](20[0-9]{2})\b", date_str)
+    print(f"[SORT DEBUG] Parsing date string: '{date_str}'")
+    
+    # Match MM/YYYY or MM-YYYY or MM.YYYY (no strict word boundaries, just non-digit)
+    m = re.search(r"(?<!\d)(0?[1-9]|1[0-2])\s*[\/\-\.]\s*(20[0-9]{2})(?!\d)", date_str)
     if m:
-        return (int(m.group(2)), int(m.group(1)))
+        res = (int(m.group(2)), int(m.group(1)))
+        print(f"[SORT DEBUG] Matched MM/YYYY: {res}")
+        return res
         
-    # Match MM/YY or MM-YY
-    m = re.search(r"\b(0?[1-9]|1[0-2])[\/\-]([2-9][0-9])\b", date_str)
+    # Match MM/YY or MM-YY or MM.YY
+    m = re.search(r"(?<!\d)(0?[1-9]|1[0-2])\s*[\/\-\.]\s*([2-9][0-9])(?!\d)", date_str)
     if m:
-        return (2000 + int(m.group(2)), int(m.group(1)))
+        res = (2000 + int(m.group(2)), int(m.group(1)))
+        print(f"[SORT DEBUG] Matched MM/YY: {res}")
+        return res
         
     # Match MON YYYY or MON YY
     months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
-    m = re.search(r"\b([A-Z]{3,9})\s*[\,\-\/]?\s*(20[0-9]{2}|[2-9][0-9])\b", date_str)
+    m = re.search(r"(?<![A-Z])([A-Z]{3,9})\s*[\,\-\/\.]?\s*(20[0-9]{2}|[2-9][0-9])(?!\d)", date_str)
     if m:
         mon_str = m.group(1)[:3]
         if mon_str in months:
@@ -66,13 +73,18 @@ def parse_revision_date(date_str: str | None) -> tuple[int, int]:
             yr = int(m.group(2))
             if yr < 100:
                 yr += 2000
-            return (yr, m_idx)
+            res = (yr, m_idx)
+            print(f"[SORT DEBUG] Matched MON YY: {res}")
+            return res
             
     # Match YYYY
-    m_year = re.search(r"\b(20[0-9]{2})\b", date_str)
+    m_year = re.search(r"(?<!\d)(20[0-9]{2})(?!\d)", date_str)
     if m_year:
-        return (int(m_year.group(1)), 1)
+        res = (int(m_year.group(1)), 1)
+        print(f"[SORT DEBUG] Matched YYYY: {res}")
+        return res
         
+    print(f"[SORT DEBUG] Failed to parse: '{date_str}', returning (9999, 99)")
     return (9999, 99)
 
 
