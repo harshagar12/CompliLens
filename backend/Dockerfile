@@ -17,6 +17,6 @@ COPY . .
 # Force cloud deployments (Render/Docker) to use Gemini Vision to avoid RapidOCR OOM issues on free tiers.
 ENV OCR_PROVIDER=gemini-vision
 
-EXPOSE 7860
+EXPOSE 8000
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "7860"]
+CMD uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}
