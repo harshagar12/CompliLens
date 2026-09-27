@@ -41,17 +41,38 @@ def parse_numeric_price(price_str: str | None) -> float | None:
 
 
 def parse_revision_date(date_str: str | None) -> tuple[int, int]:
-    """Parses MM/YYYY or YYYY from mfg/packing date string into (year, month) for chronological sorting."""
+    """Parses MM/YYYY, YY, or MON YYYY from mfg/packing date string into (year, month) for chronological sorting."""
     if not date_str:
         return (9999, 99)
-    # Match MM/YYYY
-    m = re.search(r"\b(0?[1-9]|1[0-2])[\/\-](20[2-9][0-9])\b", date_str)
+    
+    date_str = date_str.upper()
+    # Match MM/YYYY or MM-YYYY
+    m = re.search(r"\b(0?[1-9]|1[0-2])[\/\-](20[0-9]{2})\b", date_str)
     if m:
         return (int(m.group(2)), int(m.group(1)))
+        
+    # Match MM/YY or MM-YY
+    m = re.search(r"\b(0?[1-9]|1[0-2])[\/\-]([2-9][0-9])\b", date_str)
+    if m:
+        return (2000 + int(m.group(2)), int(m.group(1)))
+        
+    # Match MON YYYY or MON YY
+    months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+    m = re.search(r"\b([A-Z]{3,9})\s*[\,\-\/]?\s*(20[0-9]{2}|[2-9][0-9])\b", date_str)
+    if m:
+        mon_str = m.group(1)[:3]
+        if mon_str in months:
+            m_idx = months.index(mon_str) + 1
+            yr = int(m.group(2))
+            if yr < 100:
+                yr += 2000
+            return (yr, m_idx)
+            
     # Match YYYY
-    m_year = re.search(r"\b(20[2-9][0-9])\b", date_str)
+    m_year = re.search(r"\b(20[0-9]{2})\b", date_str)
     if m_year:
         return (int(m_year.group(1)), 1)
+        
     return (9999, 99)
 
 

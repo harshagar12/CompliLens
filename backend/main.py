@@ -177,18 +177,18 @@ def extract_declarations(
     except Exception as exc:
         import traceback
         traceback.print_exc()
-        if chosen_ocr != "rapidocr":
-            # Ultimate safeguard: fall back to local OCR so user is never blocked
+        fallback_ocr = "rapidocr" if chosen_ocr != "rapidocr" else "gemini-vision"
+        try:
             fields_dict, full_text = run_perception_pipeline(
                 image_path=image_path,
-                ocr_provider_name="rapidocr",
+                ocr_provider_name=fallback_ocr,
                 api_key=api_key,
                 crops_dir=CROPS_DIR,
                 package_id=package_id,
                 return_text=True,
             )
-        else:
-            raise HTTPException(status_code=500, detail=f"Perception pipeline failed: {str(exc)}")
+        except Exception as fallback_exc:
+            raise HTTPException(status_code=500, detail=f"Perception pipeline failed. Primary: {str(exc)}, Fallback: {str(fallback_exc)}")
 
     # Clean filler text from net_quantity and stray weights from manufacturer_name_address
     if "net_quantity" in fields_dict and fields_dict["net_quantity"].raw_value:
@@ -458,10 +458,10 @@ async def batch_extract_labels(files: list[UploadFile] = File(...)):
             detail=f"Multi-label diff requires between 2 and 5 images. Received {len(files)} files."
         )
 
-    results = []
+    import asyncio
     from pipeline.diff_llm import extract_non_statutory_with_llm
 
-    for file in files:
+    async def process_file(file: UploadFile):
         pkg_id = f"pkg_{uuid.uuid4().hex[:10]}"
         ext = Path(file.filename or "label.jpg").suffix or ".jpg"
         save_filename = f"{pkg_id}{ext}"
@@ -481,18 +481,22 @@ async def batch_extract_labels(files: list[UploadFile] = File(...)):
         chosen_ocr = cfg.get("ocr", {}).get("default_provider", "rapidocr")
         api_key = os.environ.get("GEMINI_API_KEY")
 
-        # Run perception pipeline with configured OCR
-        fields, full_text = run_perception_pipeline(
-            image_path=dest_path,
-            ocr_provider_name=chosen_ocr,
-            api_key=api_key,
-            crops_dir=CROPS_DIR,
-            package_id=pkg_id,
-            return_text=True,
+        # Run perception pipeline with configured OCR in a separate thread
+        fields, full_text = await asyncio.to_thread(
+            run_perception_pipeline,
+            dest_path,
+            chosen_ocr,
+            api_key,
+            CROPS_DIR,
+            pkg_id,
+            True
         )
 
-        # Extract non-statutory sections with Gemini LLM (with regex fallback)
-        non_statutory = extract_non_statutory_with_llm(full_text)
+        # Extract non-statutory sections with Gemini LLM in a separate thread
+        non_statutory = await asyncio.to_thread(
+            extract_non_statutory_with_llm,
+            full_text
+        )
 
         # 1. Sanitize & enrich common_name if perception grabbed nutrition table or header
         llm_common_name = non_statutory.get("common_name")
@@ -568,14 +572,18 @@ async def batch_extract_labels(files: list[UploadFile] = File(...)):
                 f_dict["evidence_crop_url"] = f"/static/crops/{pkg_id}_{fname}.jpg"
             enriched_fields[fname] = f_dict
 
-        results.append({
+        return {
             "package_id": pkg_id,
             "filename": file.filename,
             "image_url": f"/static/uploads/{save_filename}",
             "fields": enriched_fields,
             "full_text": full_text,
             "extracted_non_statutory": non_statutory,
-        })
+        }
+
+    # Execute OCR and LLM pipelines concurrently for all uploaded images
+    tasks = [process_file(file) for file in files]
+    results = await asyncio.gather(*tasks)
 
     return {"count": len(results), "packages": results}
 

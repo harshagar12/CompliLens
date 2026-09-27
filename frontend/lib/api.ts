@@ -81,12 +81,13 @@ export async function uploadPackage(file: File, category: string = "packaged_foo
 
 export async function extractFields(
   packageId: string,
-  ocrProvider: string = "rapidocr"
+  ocrProvider?: string
 ): Promise<{ fields: ExtractedField[] }> {
-  const res = await fetch(
-    `${API_BASE_URL}/api/packages/${packageId}/extract?ocr_provider=${ocrProvider}`,
-    { method: "POST" }
-  );
+  const url = ocrProvider
+    ? `${API_BASE_URL}/api/packages/${packageId}/extract?ocr_provider=${ocrProvider}`
+    : `${API_BASE_URL}/api/packages/${packageId}/extract`;
+    
+  const res = await fetch(url, { method: "POST" });
   if (!res.ok) {
     const err = await res.json().catch(() => ({ detail: "Extraction failed" }));
     throw new Error(err.detail || "Failed to extract fields");
